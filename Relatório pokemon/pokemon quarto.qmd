@@ -33,7 +33,7 @@ A primeira etapa para realizar uma AED é garantir que todos os pacotes necessá
 pacotes = c("tidyverse","C50","gmodels","dplyr","knitr","gtsummary","caret","car","stats")
 
 # Verifica se cada pacote está instalado e instala caso contrário
-pacotes_nao_instalados <- pacotes[!(pacotes %in% installed.packages()[, "Package"])]
+pacotes_nao_instalados = pacotes[!(pacotes %in% installed.packages()[, "Package"])]
 
 if (length(pacotes_nao_instalados) > 0) {
   install.packages(pacotes_nao_instalados)
@@ -84,7 +84,7 @@ pokemon = as.data.frame(pokemon)
 # Verificando a presença do valor "vazio"
 tabela = prop.table(table(pokemon$type2))*100
 
-tabela_df <- as.data.frame(tabela)
+tabela_df = as.data.frame(tabela)
 
 # Exibindo como tabela formatada
 kable(tabela_df, col.names = c("Tipo2", "Proporção"), digits = 3)
@@ -107,7 +107,7 @@ pokemon = as.data.frame(pokemon)
 # Verificando a presença do valor "vazio" novamente
 tabela = prop.table(table(pokemon$type2))*100
 
-tabela_df <- as.data.frame(tabela)
+tabela_df = as.data.frame(tabela)
 
 # Exibindo como tabela formatada
 kable(tabela_df, col.names = c("Tipo2", "Proporção"), digits = 3)
@@ -181,7 +181,7 @@ ks_test_results = pokemon %>%
                    ~ ks.test(.x, "pnorm", mean = mean(.x), sd = sd(.x))$p.value))
 
 # Criar uma tabela com os resultados do teste de Kolmogorov-Smirnov
-resultados_ks <- data.frame(
+resultados_ks = data.frame(
   Variável = c("Height", "Weight", "HP", "Attack", "Defense", 
                "Special Attack", "Special Defense", "Speed", "Total", 
                "Catch Rate", "Base Friendship", "Base Exp"),
@@ -219,11 +219,11 @@ Como pode ser observado nas tabelas, não é possível realizar comparações en
 ```{r}
 #| echo: false
 # Supondo que o código já tenha sido executado:
-height_test <- leveneTest(pokemon$height ~ pokemon$generation)
-weight_test <- leveneTest(pokemon$weight ~ pokemon$generation)
+height_test = leveneTest(pokemon$height ~ pokemon$generation)
+weight_test = leveneTest(pokemon$weight ~ pokemon$generation)
 
 # Criando uma tabela com os resultados
-resultados <- data.frame(
+resultados = data.frame(
   "Variável" = c("Height", "Weight"),
   "Valor de p" = c(height_test$`Pr(>F)`[1], weight_test$`Pr(>F)`[1]),
   "Conclusão" = c(
@@ -239,11 +239,11 @@ print(resultados)
 ```{r}
 #| echo: false
 # Supondo que o código já tenha sido executado:
-height_test <- leveneTest(pokemon$height ~ pokemon$special_group)
-weight_test <- leveneTest(pokemon$weight ~ pokemon$special_group)
+height_test = leveneTest(pokemon$height ~ pokemon$special_group)
+weight_test = leveneTest(pokemon$weight ~ pokemon$special_group)
 
 # Criando uma tabela com os resultados
-resultados <- data.frame(
+resultados = data.frame(
   "Variável" = c("Height", "Weight"),
   "Valor de p" = c(height_test$`Pr(>F)`[1], weight_test$`Pr(>F)`[1]),
   "Conclusão" = c(
@@ -259,11 +259,11 @@ print(resultados)
 ```{r}
 #| echo: false
 # Supondo que o código já tenha sido executado:
-height_test <- leveneTest(pokemon$height ~ pokemon$growth_rate)
-weight_test <- leveneTest(pokemon$weight ~ pokemon$growth_rate)
+height_test = leveneTest(pokemon$height ~ pokemon$growth_rate)
+weight_test = leveneTest(pokemon$weight ~ pokemon$growth_rate)
 
 # Criando uma tabela com os resultados
-resultados <- data.frame(
+resultados = data.frame(
   "Variável" = c("Height", "Weight"),
   "Valor de p" = c(height_test$`Pr(>F)`[1], weight_test$`Pr(>F)`[1]),
   "Conclusão" = c(
@@ -323,7 +323,7 @@ pokemon |>
 ```
 
 | Arceus![](Pokemons%20fortes/arceus.jpg) | Eternatus![](Pokemons%20fortes/eternatus.jpg) |
-|----|----|
+|------------------------------------|------------------------------------|
 | **Mewtwo**![](Pokemons%20fortes/mewtwo.png){width="180"} | **Lugia**![](Pokemons%20fortes/lugia.jpg){width="200" height="150"} |
 | **Ho-Oh**![](Pokemons%20fortes/Ho-Oh.png){width="180"} |  |
 
@@ -354,7 +354,7 @@ pokemon |>
 ```
 
 | Wishiwashi![](Pokemons%20fracos/wishiwashi.jpg){width="200"} | Sunkern![](Pokemons%20fracos/sunkern.png){width="180"} |
-|----|----|
+|------------------------------------|------------------------------------|
 | **Blipbug**![](Pokemons%20fracos/blipbug.png){width="180"} | **Snom**![](Pokemons%20fracos/snom.jpg){width="200" height="150"} |
 | **Azurill**![](Pokemons%20fracos/azurill.png){width="180"} |  |
 
@@ -379,7 +379,7 @@ pokemon |>
 ```
 
 | Articuno![](pokemons%20dificeis/articunos.png){width="200"} | Zapdos![](pokemons%20dificeis/zapdos.png){width="180"} |
-|----|----|
+|------------------------------------|------------------------------------|
 | **Moltres**![](pokemons%20dificeis/moltres.jpg){width="180"} | **Mewtwo**![](pokemons%20dificeis/mewtwo.png){width="200" height="150"} |
 | **Raikou**![](pokemons%20dificeis/Raikou.png){width="180"} |  |
 
@@ -402,7 +402,7 @@ pokemon |>
 ```
 
 | Caterpie![](pokemons%20faceis/caterpie.jpg){width="200"} | Weedle![](pokemons%20faceis/Weedle.png){width="180"} |
-|----|----|
+|------------------------------------|------------------------------------|
 | **Pidgey**![](pokemons%20faceis/pidgey.png){width="180"} | **Rattata**![](pokemons%20faceis/rattata.png){width="200" height="150"} |
 | **Spearow**![](pokemons%20faceis/spearow.jpg){width="180"} |  |
 
@@ -516,7 +516,7 @@ pokemon |>
 ```
 
 |  |  |
-|----|----|
+|------------------------------------|------------------------------------|
 | **Ralts**![](exemplos/ralts.png) | **Kirlia**![](exemplos/evo%20ralts.png) |
 | **Magikarp**![](exemplos/magikarp.png) | **Gyarados**![](exemplos/evo%20magikarp.png) |
 | **Cosmog**![](exemplos/cosmog.png) | **Cosmoem**![](exemplos/evo%20cosmog.png) |
@@ -620,23 +620,23 @@ Realizou-se a extração dos atributos utilizados para a criação da árvore. C
 ```{r}
 #| echo: false
 # Capturando a saída do summary(modelo_credito)
-saida_summary <- capture.output(summary(modelo_pokemon))
+saida_summary = capture.output(summary(modelo_pokemon))
 
 # Extraindo a seção "Attribute usage"
-attribute_usage_lines <- saida_summary[str_detect(saida_summary, "Attribute usage") + 1:length(saida_summary)]
-attribute_usage_lines <- attribute_usage_lines[str_detect(attribute_usage_lines, "^\\s+\\d+\\.\\d+%")]
+attribute_usage_lines = saida_summary[str_detect(saida_summary, "Attribute usage") + 1:length(saida_summary)]
+attribute_usage_lines = attribute_usage_lines[str_detect(attribute_usage_lines, "^\\s+\\d+\\.\\d+%")]
 
 # Extraindo os nomes dos atributos e suas porcentagens de uso
-attribute_usage <- str_match_all(attribute_usage_lines, "\\s+(\\d+\\.\\d+)%\\s+(\\w+)")
-attribute_usage <- do.call(rbind, attribute_usage)
-attribute_usage <- as.data.frame(attribute_usage)
-colnames(attribute_usage) <- c("Match", "Usage", "Attribute")
+attribute_usage = str_match_all(attribute_usage_lines, "\\s+(\\d+\\.\\d+)%\\s+(\\w+)")
+attribute_usage = do.call(rbind, attribute_usage)
+attribute_usage = as.data.frame(attribute_usage)
+colnames(attribute_usage) = c("Match", "Usage", "Attribute")
 
 # Convertendo a coluna Usage para numérica
-attribute_usage$Usage <- as.numeric(attribute_usage$Usage)
+attribute_usage$Usage = as.numeric(attribute_usage$Usage)
 
 # Ordenando os atributos por uso (opcional, mas melhora a visualização)
-attribute_usage <- attribute_usage[order(-attribute_usage$Usage), ]
+attribute_usage = attribute_usage[order(-attribute_usage$Usage), ]
 
 # Criando o gráfico de barras para atributos mais utilizados com as porcentagens nas barras
 ggplot(attribute_usage, aes(x = reorder(Attribute, Usage), y = Usage)) +
@@ -695,7 +695,7 @@ Em resumo, a análise forneceu insights valiosos sobre as características dos P
 pacotes = c("tidyverse","C50","gmodels","dplyr","knitr","gtsummary","caret","car","stats")
 
 # Verifica se cada pacote está instalado e instala caso contrário
-pacotes_nao_instalados <- pacotes[!(pacotes %in% installed.packages()[, "Package"])]
+pacotes_nao_instalados = pacotes[!(pacotes %in% installed.packages()[, "Package"])]
 
 if (length(pacotes_nao_instalados) > 0) {
   install.packages(pacotes_nao_instalados)
@@ -732,7 +732,7 @@ pokemon = as.data.frame(pokemon)
 # Verificando a presença do valor "vazio"
 tabela = prop.table(table(pokemon$type2))*100
 
-tabela_df <- as.data.frame(tabela)
+tabela_df = as.data.frame(tabela)
 
 # Exibindo como tabela formatada
 kable(tabela_df, col.names = c("Tipo2", "Proporção"), digits = 3)
@@ -753,7 +753,7 @@ pokemon = as.data.frame(pokemon)
 # Verificando a presença do valor "vazio" novamente
 tabela = prop.table(table(pokemon$type2))*100
 
-tabela_df <- as.data.frame(tabela)
+tabela_df = as.data.frame(tabela)
 
 # Exibindo como tabela formatada
 kable(tabela_df, col.names = c("Tipo2", "Proporção"), digits = 3)
@@ -812,7 +812,7 @@ ks_test_results = pokemon %>%
                    ~ ks.test(.x, "pnorm", mean = mean(.x), sd = sd(.x))$p.value))
 
 # Criar uma tabela com os resultados do teste de Kolmogorov-Smirnov
-resultados_ks <- data.frame(
+resultados_ks = data.frame(
   Variável = c("Height", "Weight", "HP", "Attack", "Defense", 
                "Special Attack", "Special Defense", "Speed", "Total", 
                "Catch Rate", "Base Friendship", "Base Exp"),
@@ -838,11 +838,11 @@ ggplot(pokemon, aes(x = total)) +
 ```{r}
 #| eval: false
 # Supondo que o código já tenha sido executado:
-height_test <- leveneTest(pokemon$height ~ pokemon$generation)
-weight_test <- leveneTest(pokemon$weight ~ pokemon$generation)
+height_test = leveneTest(pokemon$height ~ pokemon$generation)
+weight_test = leveneTest(pokemon$weight ~ pokemon$generation)
 
 # Criando uma tabela com os resultados
-resultados <- data.frame(
+resultados = data.frame(
   "Variável" = c("Height", "Weight"),
   "Valor de p" = c(height_test$`Pr(>F)`[1], weight_test$`Pr(>F)`[1]),
   "Conclusão" = c(
@@ -858,11 +858,11 @@ print(resultados)
 ```{r}
 #| eval: false
 # Supondo que o código já tenha sido executado:
-height_test <- leveneTest(pokemon$height ~ pokemon$special_group)
-weight_test <- leveneTest(pokemon$weight ~ pokemon$special_group)
+height_test = leveneTest(pokemon$height ~ pokemon$special_group)
+weight_test = leveneTest(pokemon$weight ~ pokemon$special_group)
 
 # Criando uma tabela com os resultados
-resultados <- data.frame(
+resultados = data.frame(
   "Variável" = c("Height", "Weight"),
   "Valor de p" = c(height_test$`Pr(>F)`[1], weight_test$`Pr(>F)`[1]),
   "Conclusão" = c(
@@ -878,11 +878,11 @@ print(resultados)
 ```{r}
 #| eval: false
 # Supondo que o código já tenha sido executado:
-height_test <- leveneTest(pokemon$height ~ pokemon$growth_rate)
-weight_test <- leveneTest(pokemon$weight ~ pokemon$growth_rate)
+height_test = leveneTest(pokemon$height ~ pokemon$growth_rate)
+weight_test = leveneTest(pokemon$weight ~ pokemon$growth_rate)
 
 # Criando uma tabela com os resultados
-resultados <- data.frame(
+resultados = data.frame(
   "Variável" = c("Height", "Weight"),
   "Valor de p" = c(height_test$`Pr(>F)`[1], weight_test$`Pr(>F)`[1]),
   "Conclusão" = c(
@@ -1095,23 +1095,23 @@ pokemon_pred
 ```{r}
 #| eval: false
 # Capturando a saída do summary(modelo_credito)
-saida_summary <- capture.output(summary(modelo_pokemon))
+saida_summary = capture.output(summary(modelo_pokemon))
 
 # Extraindo a seção "Attribute usage"
-attribute_usage_lines <- saida_summary[str_detect(saida_summary, "Attribute usage") + 1:length(saida_summary)]
-attribute_usage_lines <- attribute_usage_lines[str_detect(attribute_usage_lines, "^\\s+\\d+\\.\\d+%")]
+attribute_usage_lines = saida_summary[str_detect(saida_summary, "Attribute usage") + 1:length(saida_summary)]
+attribute_usage_lines = attribute_usage_lines[str_detect(attribute_usage_lines, "^\\s+\\d+\\.\\d+%")]
 
 # Extraindo os nomes dos atributos e suas porcentagens de uso
-attribute_usage <- str_match_all(attribute_usage_lines, "\\s+(\\d+\\.\\d+)%\\s+(\\w+)")
-attribute_usage <- do.call(rbind, attribute_usage)
-attribute_usage <- as.data.frame(attribute_usage)
-colnames(attribute_usage) <- c("Match", "Usage", "Attribute")
+attribute_usage = str_match_all(attribute_usage_lines, "\\s+(\\d+\\.\\d+)%\\s+(\\w+)")
+attribute_usage = do.call(rbind, attribute_usage)
+attribute_usage = as.data.frame(attribute_usage)
+colnames(attribute_usage) = c("Match", "Usage", "Attribute")
 
 # Convertendo a coluna Usage para numérica
-attribute_usage$Usage <- as.numeric(attribute_usage$Usage)
+attribute_usage$Usage = as.numeric(attribute_usage$Usage)
 
 # Ordenando os atributos por uso (opcional, mas melhora a visualização)
-attribute_usage <- attribute_usage[order(-attribute_usage$Usage), ]
+attribute_usage = attribute_usage[order(-attribute_usage$Usage), ]
 
 # Criando o gráfico de barras para atributos mais utilizados com as porcentagens nas barras
 ggplot(attribute_usage, aes(x = reorder(Attribute, Usage), y = Usage)) +
