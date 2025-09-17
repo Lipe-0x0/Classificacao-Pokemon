@@ -193,7 +193,7 @@ pokemon = pokemon |>
                                "Ordinary" = "Ordinary"))
 
 # Convertendo letra "é" na coluna species por "e"
-#pokemon$species <- gsub("é", "e", pokemon$species, ignore.case = TRUE)
+#pokemon$species = gsub("é", "e", pokemon$species, ignore.case = TRUE)
 
 # Omitindo linhas que possuem valores nulos (34 linhas)
 pokemon = na.omit(pokemon)
@@ -219,23 +219,23 @@ CrossTable(pokemon_teste$special_group, pokemon_pred,
            dnn = c("Grupos Especiais real", "Grupos Especiais predita"))
 
 # Capturando a saída do summary(modelo_credito)
-saida_summary <- capture.output(summary(modelo_pokemon))
+saida_summary = capture.output(summary(modelo_pokemon))
 
 # Extraindo a seção "Attribute usage"
-attribute_usage_lines <- saida_summary[str_detect(saida_summary, "Attribute usage") + 1:length(saida_summary)]
-attribute_usage_lines <- attribute_usage_lines[str_detect(attribute_usage_lines, "^\\s+\\d+\\.\\d+%")]
+attribute_usage_lines = saida_summary[str_detect(saida_summary, "Attribute usage") + 1:length(saida_summary)]
+attribute_usage_lines = attribute_usage_lines[str_detect(attribute_usage_lines, "^\\s+\\d+\\.\\d+%")]
 
 # Extraindo os nomes dos atributos e suas porcentagens de uso
-attribute_usage <- str_match_all(attribute_usage_lines, "\\s+(\\d+\\.\\d+)%\\s+(\\w+)")
-attribute_usage <- do.call(rbind, attribute_usage)
-attribute_usage <- as.data.frame(attribute_usage)
-colnames(attribute_usage) <- c("Match", "Usage", "Attribute")
+attribute_usage = str_match_all(attribute_usage_lines, "\\s+(\\d+\\.\\d+)%\\s+(\\w+)")
+attribute_usage = do.call(rbind, attribute_usage)
+attribute_usage = as.data.frame(attribute_usage)
+colnames(attribute_usage) = c("Match", "Usage", "Attribute")
 
 # Convertendo a coluna Usage para numérica
-attribute_usage$Usage <- as.numeric(attribute_usage$Usage)
+attribute_usage$Usage = as.numeric(attribute_usage$Usage)
 
 # Ordenando os atributos por uso (opcional, mas melhora a visualização)
-attribute_usage <- attribute_usage[order(-attribute_usage$Usage), ]
+attribute_usage = attribute_usage[order(-attribute_usage$Usage), ]
 
 # Criando o gráfico de barras para atributos mais utilizados com as porcentagens nas barras
 ggplot(attribute_usage, aes(x = reorder(Attribute, Usage), y = Usage)) +
@@ -254,7 +254,7 @@ ggplot(attribute_usage, aes(x = reorder(Attribute, Usage), y = Usage)) +
   theme(plot.title = element_text(hjust = 0.5))  # Centraliza o título
 
 # Melhorando a acurácia através do Boosting
-modelo_pokemon_boost10 <- C5.0(x = pokemon_treino[-20],
+modelo_pokemon_boost10 = C5.0(x = pokemon_treino[-20],
                                y = pokemon_treino$special_group, trials = 50)
 modelo_pokemon_boost10
 
@@ -263,7 +263,7 @@ summary(modelo_pokemon_boost10)
 
 # A taxa de erro no treinamento caiu de 13.9% para 3.8%
 # Vamos agora avaliar para os dados de teste
-pokemon_boost_pred10 <- predict(modelo_pokemon_boost10, pokemon_teste)
+pokemon_boost_pred10 = predict(modelo_pokemon_boost10, pokemon_teste)
 CrossTable(pokemon_teste$special_group, pokemon_boost_pred10,
            prop.chisq = FALSE, prop.c = FALSE, prop.r = FALSE,
            dnn = c("Grupos Especiais real", "Grupos Especiais predita"))
