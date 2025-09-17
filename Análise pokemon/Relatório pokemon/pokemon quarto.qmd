@@ -1,0 +1,1147 @@
+---
+title: "Relatório Pokemon"
+author: "Luis Felipe Gomes de Oliveira"
+date: today
+lang: pt    
+format: html
+editor: visual
+df-print: paged 
+bibliography: C:/Users/fan79/OneDrive/Documentos/R/PROJETOS R/Análise pokemon/Relatório pokemon/referencias.bib
+csl: C:/Users/fan79/OneDrive/Documentos/R/PROJETOS R/Análise pokemon/Relatório pokemon/abnt.csl
+---
+
+## 1. Introdução ![](dataset-cover.png)
+
+Este relatório tem como objetivo apresentar uma visão geral dos dados do banco [pokemon_data](https://www.kaggle.com/datasets/guavocado/pokemon-stats-1025-pokemons "Pokemon Stats (1025 pokemons)"), retirados do Kaggle, explorando características interessantes dos Pokémon, como seus **tipos**, **grupos especiais**, **estatísticas totais** e **geração**.
+
+Durante a análise, foram realizadas visualizações das distribuições dessas variáveis para identificar padrões e tendências, além da aplicação de um modelo de classificação para entender melhor as relações entre as características dos Pokémon.
+
+O foco é entender melhor como essas características se relacionam e o que elas podem nos ensinar sobre os Pokémon de diferentes gerações.
+
+## 2. Análise Exploratória
+
+### 2.1 Carregamento dos Pacotes e Dados
+
+A primeira etapa para realizar uma AED é garantir que todos os pacotes necessários estão instalados e carregados corretamente. Neste caso, usamos pacotes como `tidyverse`, `C50`, `gmodels`, `knitr`, `dplyr`, `caret`, `car`, `stats` e `gtsummary` que são essenciais para manipulação de dados e análise estatística.
+
+```{r}
+#| error: false
+#| message: false
+#| warning: false
+#| include: false
+
+pacotes = c("tidyverse","C50","gmodels","dplyr","knitr","gtsummary","caret","car","stats")
+
+# Verifica se cada pacote está instalado e instala caso contrário
+pacotes_nao_instalados <- pacotes[!(pacotes %in% installed.packages()[, "Package"])]
+
+if (length(pacotes_nao_instalados) > 0) {
+  install.packages(pacotes_nao_instalados)
+}
+
+lapply(pacotes, library, character.only = TRUE)
+```
+
+Agora que as bibliotecas estão carregadas, carreguei o conjunto de dados pokemon para realizar a exploração inicial
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+# Carrega a base de dados em formato csv
+pokemon = read.csv2("~/R/PROJETOS R/Análise pokemon/pokemon_data.csv", header = T, sep = ",", fileEncoding = "UTF-8")
+
+# Verifica as 5 primeiras linhas do data frame
+head(pokemon, 5)
+```
+
+### 2.2 Tratamento dos Dados
+
+Para compreendermos melhor a base, é necessário observar os tipos de cada variável e sua disposição.
+
+```{r}
+#| echo: false
+# Verificando o tipo de cada variável
+str(pokemon)
+```
+
+#### 2.2.1 Valores Ausentes e Diversidades
+
+No banco de dados de Pokémon, os valores ausentes foram representados por strings vazias ("") em vez de `NA`. Além disso, foram realizadas verificações para identificar e corrigir espaços extras e possíveis valores duplicados.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+# Verificando se há entradas duplicadas
+print(paste("A quantidade de entradas duplicadas na base de dados é:", sum(duplicated(pokemon))))
+
+# Retirando espaços em branco com trimws
+pokemon = apply(pokemon,2,trimws)
+pokemon = as.data.frame(pokemon)
+
+# Verificando a presença do valor "vazio"
+tabela = prop.table(table(pokemon$type2))*100
+
+tabela_df <- as.data.frame(tabela)
+
+# Exibindo como tabela formatada
+kable(tabela_df, col.names = c("Tipo2", "Proporção"), digits = 3)
+```
+
+Como algumas colunas continham uma quantidade considerável de valores ausentes, decidiu-se substituí-los por "Nenhum" por meio de uma função personalizada que verificava a presença da string ("") e realizava a substituição.
+
+```{r}
+#| include: false
+# Criando uma função para substituição do valor "vazio"
+subst_vazios = function(col){
+  ifelse(col == "", "Nenhum", col)
+}
+
+# Aplicando a função de substituição
+pokemon = apply(pokemon, 2, subst_vazios)
+
+pokemon = as.data.frame(pokemon)
+
+# Verificando a presença do valor "vazio" novamente
+tabela = prop.table(table(pokemon$type2))*100
+
+tabela_df <- as.data.frame(tabela)
+
+# Exibindo como tabela formatada
+kable(tabela_df, col.names = c("Tipo2", "Proporção"), digits = 3)
+```
+
+#### 2.2.2 Alterando o Tipo das Tariáveis
+
+Devido à substituição de strings, os valores de cada coluna foram convertidos para o formato `character`. Para corrigir isso, ajustamos os tipos das variáveis, convertendo algumas para o tipo fator e outras para `double` e `integer`, o que facilitou a análise.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+attach(pokemon)
+
+# Alterando o tipo das colunas
+# Fator
+pokemon$generation = as.factor(generation)
+pokemon$special_group = as.factor(special_group)
+pokemon$egg_cycles = as.factor(egg_cycles)
+pokemon$egg_group1 = as.factor(egg_group1)
+pokemon$egg_group2 = as.factor(egg_group2)
+pokemon$growth_rate = as.factor(growth_rate)
+
+# Inteiros e Reais
+pokemon$height = as.double(height)
+pokemon$weight = as.double(weight)
+pokemon$hp = as.integer(hp)
+pokemon$attack = as.integer(attack)
+pokemon$defense = as.integer(defense)
+pokemon$speed = as.integer(speed)
+pokemon$sp_atk = as.integer(sp_atk)
+pokemon$sp_def = as.integer(sp_def)
+pokemon$total = as.integer(total)
+pokemon$base_exp = as.integer(base_exp)
+pokemon$catch_rate = as.integer(catch_rate)
+pokemon$base_friendship = as.integer(base_friendship)
+
+str(pokemon)
+```
+
+### 2.3 Descrição dos Dados
+
+A tabela apresenta a **estatística descritiva** das variáveis contínuas e categóricas do banco de dados Pokémon, com **N = 1,025** observações. São mostradas as médias (Mean) e desvios padrão (SD) para as variáveis contínuas e a distribuição de frequências para a variável categórica **base_friendship**.
+
+```{r}
+#| echo: false
+# Tabela resumo das variáveis contínuas
+pokemon |>
+  select(where(is.numeric)) |>  # Seleciona apenas as variáveis numéricas
+  tbl_summary(
+    statistic = list(all_continuous()  ~ "{mean} ({sd})"),
+    digits = list(all_continuous() ~ c(1, 1))
+  ) |>
+  modify_header(label = "**Variável**") |>
+  modify_caption("Estatística descritiva para variáveis contínuas") |>
+  bold_labels()
+```
+
+O teste de Kolmogorov-Smirnov (KS) foi aplicado às variáveis contínuas do banco de dados Pokémon para verificar a normalidade dos dados. O valor de p do teste indica se os dados seguem uma distribuição normal: $p-valor < 0,05$ sugere que a variável não é normalmente distribuída, enquanto $p >= 0,05$ sugere normalidade.
+
+```{r}
+#| echo: false
+#| warning: false
+
+# Função para aplicar o ks.test a cada coluna com a distribuição normal
+ks_test_results = pokemon %>%
+  select(where(is.numeric)) %>%  # Seleciona apenas variáveis numéricas
+  summarise(across(everything(), 
+                   ~ ks.test(.x, "pnorm", mean = mean(.x), sd = sd(.x))$p.value))
+
+# Criar uma tabela com os resultados do teste de Kolmogorov-Smirnov
+resultados_ks <- data.frame(
+  Variável = c("Height", "Weight", "HP", "Attack", "Defense", 
+               "Special Attack", "Special Defense", "Speed", "Total", 
+               "Catch Rate", "Base Friendship", "Base Exp"),
+  `Valor de p` = c(7.85e-37, 7.07e-75, 3.60e-08, 0.0003139477, 2.37e-07, 
+                   1.16e-09, 1.95e-05, 0.0001688998, 1.88e-08, 1.11e-38, 
+                   3.97e-151, 3.54e-19),
+  Interpretação = rep("Não segue uma distribuição normal (p < 0.05)", 12)
+)
+
+# Gerar a tabela com kable
+kable(resultados_ks, caption = "Resultados do Teste de Kolmogorov-Smirnov para Normalidade")
+```
+
+**Conclusões**:
+
+-   Todas as variáveis testadas apresentam valores de p muito baixos (todos menores que 0,05), indicando que nenhuma delas segue uma distribuição normal.
+
+-   As variáveis do banco de dados Pokémon, como height, weight, hp, attack, defense, special attack, special defense, speed, total, catch rate, base friendship, e base exp não são normalmente distribuídas, de acordo com os resultados do teste de Kolmogorov-Smirnov.
+
+Afim de avaliar a variável **Total**, foi elaborado um histograma para visualizar seu comportamento:
+
+```{r}
+#| echo: false
+# Histograma da variável 'Total'
+ggplot(pokemon, aes(x = total)) +
+  geom_histogram(bins = 30, fill = "orange", color = "black") +
+  labs(title = "Distribuição do Total de Atributos", x = "Total de Atributos", y = "Frequência") +
+  theme_minimal()
+```
+
+O objetivo seguinte foi comparar o peso e a altura entre três variáveis: **geração**, **taxa de crescimento** e **grupos especiais**. Para isso, foi aplicado o teste de Levene (teste de homogeneidade de variâncias), a fim de verificar se as variâncias dos grupos de cada variável eram homogêneas, permitindo comparações válidas de peso e altura entre eles.
+
+Como pode ser observado nas tabelas, não é possível realizar comparações entre os grupos devido à falta de homogeneidade de variâncias.
+
+```{r}
+#| echo: false
+# Supondo que o código já tenha sido executado:
+height_test <- leveneTest(pokemon$height ~ pokemon$generation)
+weight_test <- leveneTest(pokemon$weight ~ pokemon$generation)
+
+# Criando uma tabela com os resultados
+resultados <- data.frame(
+  "Variável" = c("Height", "Weight"),
+  "Valor de p" = c(height_test$`Pr(>F)`[1], weight_test$`Pr(>F)`[1]),
+  "Conclusão" = c(
+    ifelse(height_test$`Pr(>F)`[1] < 0.05, "Diferença significativa", "Diferença não significativa"),
+    ifelse(weight_test$`Pr(>F)`[1] < 0.05, "Diferença significativa", "Diferença não significativa")
+  )
+)
+
+# Exibindo a tabela
+print(resultados)
+```
+
+```{r}
+#| echo: false
+# Supondo que o código já tenha sido executado:
+height_test <- leveneTest(pokemon$height ~ pokemon$special_group)
+weight_test <- leveneTest(pokemon$weight ~ pokemon$special_group)
+
+# Criando uma tabela com os resultados
+resultados <- data.frame(
+  "Variável" = c("Height", "Weight"),
+  "Valor de p" = c(height_test$`Pr(>F)`[1], weight_test$`Pr(>F)`[1]),
+  "Conclusão" = c(
+    ifelse(height_test$`Pr(>F)`[1] < 0.05, "Diferença significativa", "Diferença não significativa"),
+    ifelse(weight_test$`Pr(>F)`[1] < 0.05, "Diferença significativa", "Diferença não significativa")
+  )
+)
+
+# Exibindo a tabela
+print(resultados)
+```
+
+```{r}
+#| echo: false
+# Supondo que o código já tenha sido executado:
+height_test <- leveneTest(pokemon$height ~ pokemon$growth_rate)
+weight_test <- leveneTest(pokemon$weight ~ pokemon$growth_rate)
+
+# Criando uma tabela com os resultados
+resultados <- data.frame(
+  "Variável" = c("Height", "Weight"),
+  "Valor de p" = c(height_test$`Pr(>F)`[1], weight_test$`Pr(>F)`[1]),
+  "Conclusão" = c(
+    ifelse(height_test$`Pr(>F)`[1] < 0.05, "Diferença significativa", "Diferença não significativa"),
+    ifelse(weight_test$`Pr(>F)`[1] < 0.05, "Diferença significativa", "Diferença não significativa")
+  )
+)
+
+# Exibindo a tabela
+print(resultados)
+```
+
+------------------------------------------------------------------------
+
+#### 2.3.1 Comparação de Frequência Entre os Tipos
+
+Nos gráficos de barras abaixo, é possível observar que, no tipo primário de Pokémon, os tipos com maior frequência são: **Água** **(13%)**, **Normal (11,5%)**, **Grama (10%)**, **Inseto (8%)** e **Fogo (6,5%)**. Por outro lado, os tipos com menor frequência são: **Voador (1%)**, **Fantasma (3,5%)**, **Gelo (3%)**, **Fada (3%)** e **Ferro (3,5%)**.
+
+Já no tipo secundário, a categoria 'Nenhum' é predominante, com 50% de frequência. Ao comparar com o tipo primário, nota-se uma inversão: os tipos **Voador (10%)** e **Fada (3,5%)** têm maior frequência que **Inseto (1%)**, **Normal (1%)**, **Fogo (1,5%)** e **Água (2%)**.
+
+```{r}
+#| echo: false
+# Distribuição do tipo1
+
+pokemon %>%
+  count(type1) %>%
+  ggplot(aes(x = reorder(type1, n), y = n, fill = type1)) +
+  geom_bar(stat = "identity") + scale_y_log10() +
+  coord_flip() +
+  labs(title = "Distribuição do Tipo Primário de Pokémon", x = "Tipo1", y = "Frequência") +
+  theme_minimal()
+```
+
+```{r}
+#| echo: false
+# Distribuição do tipo2
+
+pokemon %>%
+  count(type2) %>%
+  ggplot(aes(x = reorder(type2, n), y = n, fill = type2)) +
+  geom_bar(stat = "identity") + scale_y_log10() +
+  coord_flip() +
+  labs(title = "Distribuição do Tipo Secundário de Pokémon", x = "Tipo2", y = "Frequência") +
+  theme_minimal()
+```
+
+#### 2.3.2 Fortes e Fracos
+
+```{r}
+#| echo: false
+# 5 Pokemons mais fortes (baseado na coluna total)
+pokemon |>
+  select(name,total,species,type1,type2,growth_rate) |>
+  filter(total>=mean(total)) |>
+  arrange(desc(total)) |>
+  head(5)
+```
+
+| Arceus![](Pokemons%20fortes/arceus.jpg) | Eternatus![](Pokemons%20fortes/eternatus.jpg) |
+|----|----|
+| **Mewtwo**![](Pokemons%20fortes/mewtwo.png){width="180"} | **Lugia**![](Pokemons%20fortes/lugia.jpg){width="200" height="150"} |
+| **Ho-Oh**![](Pokemons%20fortes/Ho-Oh.png){width="180"} |  |
+
+Os 5 Pokémon mais fortes, com base na coluna **total**, têm as seguintes características:
+
+-   **Arceus** é o mais forte com um total de **720 pontos** e é do tipo **Normal**.
+
+-   **Eternatus**, **Mewtwo**, **Lugia** e **Ho-oh** têm **680 pontos**, com diferentes combinações de tipos:
+
+    -   **Eternatus** (Poison e Dragon),
+
+    -   **Mewtwo** (Psychic),
+
+    -   **Lugia** (Psychic e Flying),
+
+    -   **Ho-oh** (Fire e Flying).
+
+Além disso, todos esses Pokémon têm uma **taxa de crescimento lenta** (**Slow**), o que significa que eles evoluem de forma mais gradual.
+
+```{r}
+#| echo: false
+# 5 Pokemons mais fracos (baseado na coluna total)
+pokemon |>
+  select(name,total,species,type1,type2, growth_rate) |>
+  filter(total<mean(total)) |>
+  arrange((total)) |>
+  head(5)
+```
+
+| Wishiwashi![](Pokemons%20fracos/wishiwashi.jpg){width="200"} | Sunkern![](Pokemons%20fracos/sunkern.png){width="180"} |
+|----|----|
+| **Blipbug**![](Pokemons%20fracos/blipbug.png){width="180"} | **Snom**![](Pokemons%20fracos/snom.jpg){width="200" height="150"} |
+| **Azurill**![](Pokemons%20fracos/azurill.png){width="180"} |  |
+
+-   Os **5 Pokémon mais fracos** possuem totais de pontos muito baixos, variando entre **175 e 190 pontos**.
+
+-   Eles possuem tipos primários variados como **Water**, **Grass**, **Bug**, **Ice**, e **Normal**, e apenas **Azurill** e **Snom** têm tipos secundários (**Fairy** e **Bug**, respectivamente).
+
+-   A **taxa de crescimento** varia: **Wishiwashi** e **Azurill** têm crescimento **rápido**, enquanto **Sunkern** tem **crescimento médio lento**, e **Blipbug** e **Snom** têm **crescimento médio rápido**.
+
+Esses Pokémon são mais fracos em termos de pontos totais, mas suas taxas de crescimento podem ser um ponto positivo, permitindo que evoluam de forma relativamente rápida.
+
+#### 2.3.3 Captura dos pokemons
+
+```{r}
+#| echo: false
+# 5 pokemons mais difíceis de capturar
+pokemon |>
+  select(name,catch_rate,species,type1,type2, growth_rate) |>
+  filter(catch_rate<mean(catch_rate)) |>
+  arrange(catch_rate) |>
+  head(5)
+```
+
+| Articuno![](pokemons%20dificeis/articunos.png){width="200"} | Zapdos![](pokemons%20dificeis/zapdos.png){width="180"} |
+|----|----|
+| **Moltres**![](pokemons%20dificeis/moltres.jpg){width="180"} | **Mewtwo**![](pokemons%20dificeis/mewtwo.png){width="200" height="150"} |
+| **Raikou**![](pokemons%20dificeis/Raikou.png){width="180"} |  |
+
+-   Todos esses Pokémon têm uma **taxa de captura igual a 3**, o que significa que são extremamente difíceis de capturar. Isso é comum entre Pokémon lendários e míticos, que geralmente possuem uma taxa de captura muito baixa.
+
+-   Em relação aos **tipos**, esses Pokémon possuem tipos primários como **Ice**, **Electric**, **Fire**, **Psychic** e **Electric**. Apenas **Mewtwo** e **Raikou** não têm um tipo secundário.
+
+-   A **taxa de crescimento** de todos esses Pokémon é **lenta**, o que indica que eles são Pokémon raros e poderosos que evoluem ou são obtidos de forma mais difícil ao longo do tempo.
+
+Esses Pokémon são conhecidos por sua raridade e dificuldade de captura, refletindo seu status de Pokémon lendário e poderoso no universo Pokémon.
+
+```{r}
+#| echo: false
+# 5 pokemons mais fáceis de capturar
+pokemon |>
+  select(name,catch_rate,species,type1,type2, growth_rate) |>
+  filter(catch_rate>=mean(catch_rate)) |>
+  arrange(desc(catch_rate)) |>
+  head(5)
+```
+
+| Caterpie![](pokemons%20faceis/caterpie.jpg){width="200"} | Weedle![](pokemons%20faceis/Weedle.png){width="180"} |
+|----|----|
+| **Pidgey**![](pokemons%20faceis/pidgey.png){width="180"} | **Rattata**![](pokemons%20faceis/rattata.png){width="200" height="150"} |
+| **Spearow**![](pokemons%20faceis/spearow.jpg){width="180"} |  |
+
+Os cinco Pokémon mais fáceis de capturar possuem uma taxa de captura de **255**, o que indica que são extremamente fáceis de capturar no jogo. Isso é comum entre Pokémon iniciais ou comuns, que têm uma taxa de captura muito alta.
+
+Quanto aos tipos, todos esses Pokémon têm tipos primários como **Bug**, **Normal** e **Flying**, com Weedle sendo o único com um tipo secundário, **Poison**.
+
+A taxa de crescimento desses Pokémon é **Medium Fast** para a maioria deles, exceto **Pidgey**, que possui **Medium Slow**. Isso sugere que eles são Pokémon de fácil acesso, com evolução relativamente rápida ou moderada.
+
+Esses Pokémon são conhecidos por sua facilidade de captura, sendo populares entre jogadores que estão no início da jornada ou buscando Pokémon de fácil obtenção.
+
+#### 2.3.4 Analisando Geração, Grupos Especiais e Taxa de Crescimento
+
+**– Distribuição de Pokémon por Geração:** A análise da quantidade de Pokémon por geração, representada pelo gráfico de barras, revela que a **primeira**, **terceira** e **quinta** gerações possuem a maior frequência de Pokémon. Essa distribuição destaca como essas gerações tiveram um número mais expressivo de criaturas ao longo das edições.
+
+```{r}
+#| echo: false
+# Distribuição das gerações
+ggplot(data = pokemon) +
+  geom_bar(aes(x = generation, fill = "steelblue")) +
+  labs(title = "Quantidade de Pokémon por Geração", x = "Geração", y = "Frequência") +
+  theme_minimal()
+```
+
+**Aplicação do Teste de Levene:**
+
+```{r}
+#| echo: false
+leveneTest(pokemon$total ~ pokemon$generation)
+```
+
+**– Comparação de Atributos por Geração:** Ao observarmos o gráfico de violino, que ilustra a distribuição dos atributos totais por geração, é possível notar que as gerações **sexta**, **sétima** e **oitava** possuem médias de atributos semelhantes às das gerações anteriores. Isso sugere um equilíbrio no poder geral dos Pokémon, independentemente da geração, indicando que os Pokémon mais recentes são tão fortes quanto os das gerações passadas.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+# Verificar melhor geração baseado no total
+ggplot(pokemon, aes(x = generation, y = total, color=generation)) +
+  geom_violin() + stat_summary(fun.y=mean, geom="point", shape=23, size=5, fill = "black") +
+  geom_jitter(shape=16, position=position_jitter(0.2))
+```
+
+**– Distribuição dos Grupos Especiais de Pokémon:** A análise da distribuição dos grupos especiais de Pokémon, apresentada no gráfico de barras, mostra que a categoria Ordinary é a mais frequente, destacando-se entre os demais grupos. No entanto, essa alta frequência não implica em maior força, já que a categoria Ordinary inclui muitos Pokémon com atributos totais mais baixos.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+# Distribuição dos grupos especiais
+ggplot(data = pokemon) +
+  geom_bar(aes(x = special_group, fill = "tomato"),width = 0.6) + scale_y_log10() +
+  labs(title = "Quantidade de Pokémon por Grupos Especiais", x = "Special Group", y = "Frequência") +
+  theme_minimal()
+```
+
+**Aplicação do Teste de Levene:**
+
+```{r}
+#| echo: false
+leveneTest(pokemon$total ~ pokemon$special_group)
+```
+
+Com base no resultado do p-valor, que foi inferior a 0,05, podemos concluir que não há homogeneidade de variância. Portanto, não foi possível realizar comparações em relação à variável total de atributos.
+
+**- Distribuição das Taxas de Crescimento de Pokémon:** O gráfico de barras que mostra a distribuição das taxas de crescimento dos Pokémon revela que as categorias Medium Fast, Medium Slow e Slow são as mais frequentes. Essas categorias representam a maioria dos Pokémon e refletem diferentes ritmos de evolução.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+# Distribuição da taxa de crescimento
+ggplot(data = pokemon) +
+  geom_bar(aes(x = growth_rate, fill = "darkgreen")) + scale_y_log10() +
+  labs(title = "Quantidade de Pokémon por Taxa de Crescimento", x = "Growth Rate", y = "Frequência") +
+  theme_minimal()
+```
+
+**Aplicação do Teste de Levene:**
+
+```{r}
+#| echo: false
+leveneTest(pokemon$total ~ pokemon$growth_rate)
+```
+
+**- Comparação de Atributos por Taxa de Crescimento:** Ao analisar o gráfico de violino, que apresenta a distribuição dos atributos totais por taxa de crescimento, observa-se que as categorias Medium Fast e Medium Slow geralmente possuem Pokémon com valores totais de atributos abaixo da média. Esses Pokémon frequentemente possuem a capacidade de evoluir, o que compensa seus valores iniciais mais baixos.
+
+Por outro lado, a categoria Slow é um grupo misto: inclui tanto Pokémon mais fracos, com baixos valores de atributos e dificuldade para evoluir, quanto Pokémon extremamente fortes, que não precisam mais evoluir. Isso resulta em uma distribuição mais dispersa, com valores totais de atributos variados.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+# Verificar melhor taxa de crescimento baseado no total
+ggplot(pokemon, aes(x = growth_rate, y = total, color=growth_rate)) +
+  geom_violin() + stat_summary(fun.y=mean, geom="point", shape=23, size=4, fill = "black") +
+  geom_jitter(shape=16, position=position_jitter(0.2))
+
+# Exemplos de pokemon que tem uma taxa de crescimento lenta e possuem total baixo
+```
+
+**Exemplos:**
+
+```{r}
+#| echo: false
+pokemon |>
+  select(name, total, growth_rate, type1, type2) |>
+  filter(growth_rate == "Slow") |>
+  arrange((total)) |>
+  head(3)
+```
+
+|  |  |
+|----|----|
+| **Ralts**![](exemplos/ralts.png) | **Kirlia**![](exemplos/evo%20ralts.png) |
+| **Magikarp**![](exemplos/magikarp.png) | **Gyarados**![](exemplos/evo%20magikarp.png) |
+| **Cosmog**![](exemplos/cosmog.png) | **Cosmoem**![](exemplos/evo%20cosmog.png) |
+
+## 3. Modelo de Classificação
+
+### 3.1 Pré - Tratamento
+
+1.  **Exclusão de colunas irrelevantes:** Inicialmente, excluí as colunas que dificultavam a identificação de padrões no modelo, devido à alta quantidade de valores. Essas colunas foram:
+    -   `name`
+    -   `dexnum`
+    -   `percent_male`
+    -   `percent_female`
+    -   `species`
+    -   `ability1`
+    -   `ability2`
+    -   `hidden_ability`
+    -   `ev_yield`
+
+```{r}
+#| include: false
+# Excluindo colunas inutilizáveis para o modelo 
+pokemon$name = NULL
+pokemon$dexnum = NULL
+
+pokemon$percent_female = NULL
+pokemon$percent_male = NULL
+
+pokemon$species = NULL
+pokemon$ability1 = NULL
+pokemon$ability2 = NULL
+pokemon$hidden_ability = NULL
+
+pokemon$ev_yield = NULL
+```
+
+2.  **Transformação da variável resposta em dicotômica:** Em seguida, transformei a variável resposta (`special_group`) em uma variável dicotômica. O primeiro valor foi recodificado como "Especiais", englobando as categorias:
+    -   "Future Paradox"
+    -   "Ancient Paradox"
+    -   "Ultra Beast"
+    -   "Baby Pokemon"
+    -   "Fossil"
+    -   "Legendary"
+    -   "Mythical"
+
+```{r}
+#| include: false
+# Mudando special group para dicotomica
+pokemon = pokemon |>
+  mutate(
+    special_group = fct_recode(special_group,
+                               "Especiais"    = "Future Paradox",
+                               "Especiais"      = "Ancient Paradox",
+                               "Especiais" = "Ultra Beast",
+                               "Especiais" = "Baby Pokemon",
+                               "Especiais"        = "Fossil",
+                               "Especiais"      = "Legendary",
+                               "Especiais"                 = "Mythical",
+                               "Ordinary" = "Ordinary"))
+```
+
+O segundo valor foi mantido como "Ordinary" para os valores já classificados como "Ordinary".
+
+3.  **Omissão de linhas nulas:** Por fim, omiti as linhas com valores nulos, totalizando 34 linhas. Essas linhas estavam nas variáveis `height` (17 linhas) e `width` (17 linhas).
+
+```{r}
+#| include: false
+# Omitindo linhas que possuem valores nulos (34 linhas)
+pokemon = na.omit(pokemon)
+```
+
+Foi definida uma semente (123) para evitar a criação de amostras aleatórias. Em seguida, as bases de dados de treino e teste foram criadas, sendo que a base de treino corresponde a 90% da base original e a base de teste a 10%.
+
+```{r}
+#| echo: false
+set.seed(123)
+amostra_teste = sample(1008,102)
+
+pokemon_treino = pokemon[-amostra_teste,]
+pokemon_teste = pokemon[amostra_teste,]
+
+print(paste("Dimensão da base de dados de treino:",dim(pokemon_treino)[1],",",dim(pokemon_treino)[2]))
+print(paste("Dimensão da base de dados de teste:",dim(pokemon_teste)[1],",",dim(pokemon_teste)[2]))
+```
+
+### 3.2 Aplicando o Modelo
+
+Após configurar o modelo C5.0 para a base de dados de treino, utilizando a coluna `special_group` como variável resposta e as demais como previsoras, aplicamos o `modelo_pokemon` na base de teste, obtendo a seguinte classificação:
+
+```{r}
+#| echo: false
+modelo_pokemon = C5.0(x = pokemon_treino[-c(20)], y = pokemon_treino$special_group)
+
+# Vamos ver como o modelo classifica os dados de teste
+pokemon_pred = predict(modelo_pokemon, pokemon_teste)
+pokemon_pred
+```
+
+Realizou-se a extração dos atributos utilizados para a criação da árvore. Como pode ser observado no gráfico de barras a seguir, as únicas variáveis selecionadas foram `egg_group1`, `egg_cycles` e `catch_rate`, classificadas em ordem de importância com 100%, 85,54% e 2,76%, respectivamente.
+
+```{r}
+#| echo: false
+# Capturando a saída do summary(modelo_credito)
+saida_summary <- capture.output(summary(modelo_pokemon))
+
+# Extraindo a seção "Attribute usage"
+attribute_usage_lines <- saida_summary[str_detect(saida_summary, "Attribute usage") + 1:length(saida_summary)]
+attribute_usage_lines <- attribute_usage_lines[str_detect(attribute_usage_lines, "^\\s+\\d+\\.\\d+%")]
+
+# Extraindo os nomes dos atributos e suas porcentagens de uso
+attribute_usage <- str_match_all(attribute_usage_lines, "\\s+(\\d+\\.\\d+)%\\s+(\\w+)")
+attribute_usage <- do.call(rbind, attribute_usage)
+attribute_usage <- as.data.frame(attribute_usage)
+colnames(attribute_usage) <- c("Match", "Usage", "Attribute")
+
+# Convertendo a coluna Usage para numérica
+attribute_usage$Usage <- as.numeric(attribute_usage$Usage)
+
+# Ordenando os atributos por uso (opcional, mas melhora a visualização)
+attribute_usage <- attribute_usage[order(-attribute_usage$Usage), ]
+
+# Criando o gráfico de barras para atributos mais utilizados com as porcentagens nas barras
+ggplot(attribute_usage, aes(x = reorder(Attribute, Usage), y = Usage)) +
+  geom_bar(stat = "identity", fill = "steelblue") +
+  geom_text(aes(label = paste0(Usage, "%")),  # Adiciona as porcentagens
+            hjust = -0.1,                     # Ajusta a posição horizontal do texto
+            size = 3.5,                        # Tamanho do texto
+            color = "black") +                 # Cor do texto
+  coord_flip() +                               # Inverte os eixos para facilitar a leitura
+  labs(
+    title = "Uso dos Atributos no Modelo",
+    x = "Atributos",
+    y = "Porcentagem de Uso (%)"
+  ) +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5))  # Centraliza o título
+```
+
+### 3.3 Avaliação
+
+```{r}
+#| echo: false
+# Aplicando matriz de confusão
+matriz_conf = confusionMatrix(pokemon_pred, pokemon_teste$special_group)
+matriz_conf
+```
+
+Ao comparar a previsão do modelo com a base de dados de teste, obtivemos uma acurácia de 98%, o que é significativamente alto, com um erro relativamente pequeno
+
+**Para uma melhor visualização da tabela comparativa entre as previsões e os valores reais**:
+
+```{r}
+#| echo: false
+# Vamos usar a função do pacote gmodels para comparar as classificações
+# do modelo aos dados de treinamento com a classificação real
+CrossTable(pokemon_teste$special_group, pokemon_pred,
+           prop.chisq = FALSE, prop.c = FALSE, prop.r = FALSE,
+           dnn = c("Grupos Especiais real", "Grupos Especiais predita"))
+```
+
+## 4. Conclusão
+
+O relatório apresentou uma análise detalhada dos dados do banco pokemon_data, explorando características como tipos, grupos especiais, estatísticas e gerações dos Pokémon. A análise revelou padrões interessantes, como a predominância dos tipos Água e Normal no tipo primário, enquanto o tipo secundário foi majoritariamente ausente ("Nenhum"). Pokémon lendários, como Arceus e Mewtwo, destacaram-se por seus altos valores de atributos totais e taxas de crescimento lentas, enquanto Pokémon comuns, como Caterpie e Pidgey, foram identificados como os mais fáceis de capturar.
+
+A distribuição por geração mostrou que as primeiras, terceiras e quintas gerações possuem a maior quantidade de Pokémon, com equilíbrio nos atributos totais entre gerações mais antigas e recentes. Além disso, a categoria "Ordinary" foi a mais frequente entre os grupos especiais, embora não necessariamente a mais forte. O modelo de classificação aplicado alcançou alta acurácia (98%), utilizando variáveis como egg_group1, egg_cycles e catch_rate para prever grupos especiais.
+
+Em resumo, a análise forneceu insights valiosos sobre as características dos Pokémon, destacando a importância de entender sua distribuição e atributos para estratégias competitivas. A aplicação de técnicas de ciência de dados demonstrou como a exploração contínua de dados pode auxiliar treinadores a adaptar suas táticas em um metagame em constante evolução.
+
+## 5. Anexos
+
+### 5.1 Códigos da Análise Exploratória
+
+```{r}
+#| eval: false
+
+pacotes = c("tidyverse","C50","gmodels","dplyr","knitr","gtsummary","caret","car","stats")
+
+# Verifica se cada pacote está instalado e instala caso contrário
+pacotes_nao_instalados <- pacotes[!(pacotes %in% installed.packages()[, "Package"])]
+
+if (length(pacotes_nao_instalados) > 0) {
+  install.packages(pacotes_nao_instalados)
+}
+
+lapply(pacotes, library, character.only = TRUE)
+```
+
+```{r}
+#| eval: false
+
+# Carrega a base de dados em formato csv
+pokemon = read.csv2("~/R/PROJETOS R/Análise pokemon/pokemon_data.csv", header = T, sep = ",", fileEncoding = "UTF-8")
+
+# Verifica as 5 primeiras linhas do data frame
+head(pokemon, 5)
+```
+
+```{r}
+#| eval: false
+# Verificando o tipo de cada variável
+str(pokemon)
+```
+
+```{r}
+#| eval: false
+# Verificando se há entradas duplicadas
+print(paste("A quantidade de entradas duplicadas na base de dados é:", sum(duplicated(pokemon))))
+
+# Retirando espaços em branco com trimws
+pokemon = apply(pokemon,2,trimws)
+pokemon = as.data.frame(pokemon)
+
+# Verificando a presença do valor "vazio"
+tabela = prop.table(table(pokemon$type2))*100
+
+tabela_df <- as.data.frame(tabela)
+
+# Exibindo como tabela formatada
+kable(tabela_df, col.names = c("Tipo2", "Proporção"), digits = 3)
+```
+
+```{r}
+#| eval: false
+# Criando uma função para substituição do valor "vazio"
+subst_vazios = function(col){
+  ifelse(col == "", "Nenhum", col)
+}
+
+# Aplicando a função de substituição
+pokemon = apply(pokemon, 2, subst_vazios)
+
+pokemon = as.data.frame(pokemon)
+
+# Verificando a presença do valor "vazio" novamente
+tabela = prop.table(table(pokemon$type2))*100
+
+tabela_df <- as.data.frame(tabela)
+
+# Exibindo como tabela formatada
+kable(tabela_df, col.names = c("Tipo2", "Proporção"), digits = 3)
+```
+
+```{r}
+#| eval: false
+attach(pokemon)
+
+# Alterando o tipo das colunas
+# Fator
+pokemon$generation = as.factor(generation)
+pokemon$special_group = as.factor(special_group)
+pokemon$egg_cycles = as.factor(egg_cycles)
+pokemon$egg_group1 = as.factor(egg_group1)
+pokemon$egg_group2 = as.factor(egg_group2)
+pokemon$growth_rate = as.factor(growth_rate)
+
+# Inteiros e Reais
+pokemon$height = as.double(height)
+pokemon$weight = as.double(weight)
+pokemon$hp = as.integer(hp)
+pokemon$attack = as.integer(attack)
+pokemon$defense = as.integer(defense)
+pokemon$speed = as.integer(speed)
+pokemon$sp_atk = as.integer(sp_atk)
+pokemon$sp_def = as.integer(sp_def)
+pokemon$total = as.integer(total)
+pokemon$base_exp = as.integer(base_exp)
+pokemon$catch_rate = as.integer(catch_rate)
+pokemon$base_friendship = as.integer(base_friendship)
+
+str(pokemon)
+```
+
+```{r}
+#| eval: false
+# Tabela resumo das variáveis contínuas
+pokemon |>
+  select(where(is.numeric)) |>  # Seleciona apenas as variáveis numéricas
+  tbl_summary(
+    statistic = list(all_continuous()  ~ "{mean} ({sd})"),
+    digits = list(all_continuous() ~ c(1, 1))
+  ) |>
+  modify_header(label = "**Variável**") |>
+  modify_caption("Estatística descritiva para variáveis contínuas") |>
+  bold_labels()
+```
+
+```{r}
+#| eval: false
+# Função para aplicar o ks.test a cada coluna com a distribuição normal
+ks_test_results = pokemon %>%
+  select(where(is.numeric)) %>%  # Seleciona apenas variáveis numéricas
+  summarise(across(everything(), 
+                   ~ ks.test(.x, "pnorm", mean = mean(.x), sd = sd(.x))$p.value))
+
+# Criar uma tabela com os resultados do teste de Kolmogorov-Smirnov
+resultados_ks <- data.frame(
+  Variável = c("Height", "Weight", "HP", "Attack", "Defense", 
+               "Special Attack", "Special Defense", "Speed", "Total", 
+               "Catch Rate", "Base Friendship", "Base Exp"),
+  `Valor de p` = c(7.85e-37, 7.07e-75, 3.60e-08, 0.0003139477, 2.37e-07, 
+                   1.16e-09, 1.95e-05, 0.0001688998, 1.88e-08, 1.11e-38, 
+                   3.97e-151, 3.54e-19),
+  Interpretação = rep("Não segue uma distribuição normal (p < 0.05)", 12)
+)
+
+# Gerar a tabela com kable
+kable(resultados_ks, caption = "Resultados do Teste de Kolmogorov-Smirnov para Normalidade")
+```
+
+```{r}
+#| eval: false
+# Histograma da variável 'Total'
+ggplot(pokemon, aes(x = total)) +
+  geom_histogram(bins = 30, fill = "orange", color = "black") +
+  labs(title = "Distribuição do Total de Atributos", x = "Total de Atributos", y = "Frequência") +
+  theme_minimal()
+```
+
+```{r}
+#| eval: false
+# Supondo que o código já tenha sido executado:
+height_test <- leveneTest(pokemon$height ~ pokemon$generation)
+weight_test <- leveneTest(pokemon$weight ~ pokemon$generation)
+
+# Criando uma tabela com os resultados
+resultados <- data.frame(
+  "Variável" = c("Height", "Weight"),
+  "Valor de p" = c(height_test$`Pr(>F)`[1], weight_test$`Pr(>F)`[1]),
+  "Conclusão" = c(
+    ifelse(height_test$`Pr(>F)`[1] < 0.05, "Diferença significativa", "Diferença não significativa"),
+    ifelse(weight_test$`Pr(>F)`[1] < 0.05, "Diferença significativa", "Diferença não significativa")
+  )
+)
+
+# Exibindo a tabela
+print(resultados)
+```
+
+```{r}
+#| eval: false
+# Supondo que o código já tenha sido executado:
+height_test <- leveneTest(pokemon$height ~ pokemon$special_group)
+weight_test <- leveneTest(pokemon$weight ~ pokemon$special_group)
+
+# Criando uma tabela com os resultados
+resultados <- data.frame(
+  "Variável" = c("Height", "Weight"),
+  "Valor de p" = c(height_test$`Pr(>F)`[1], weight_test$`Pr(>F)`[1]),
+  "Conclusão" = c(
+    ifelse(height_test$`Pr(>F)`[1] < 0.05, "Diferença significativa", "Diferença não significativa"),
+    ifelse(weight_test$`Pr(>F)`[1] < 0.05, "Diferença significativa", "Diferença não significativa")
+  )
+)
+
+# Exibindo a tabela
+print(resultados)
+```
+
+```{r}
+#| eval: false
+# Supondo que o código já tenha sido executado:
+height_test <- leveneTest(pokemon$height ~ pokemon$growth_rate)
+weight_test <- leveneTest(pokemon$weight ~ pokemon$growth_rate)
+
+# Criando uma tabela com os resultados
+resultados <- data.frame(
+  "Variável" = c("Height", "Weight"),
+  "Valor de p" = c(height_test$`Pr(>F)`[1], weight_test$`Pr(>F)`[1]),
+  "Conclusão" = c(
+    ifelse(height_test$`Pr(>F)`[1] < 0.05, "Diferença significativa", "Diferença não significativa"),
+    ifelse(weight_test$`Pr(>F)`[1] < 0.05, "Diferença significativa", "Diferença não significativa")
+  )
+)
+
+# Exibindo a tabela
+print(resultados)
+```
+
+```{r}
+#| eval: false
+# Distribuição do tipo1
+
+pokemon %>%
+  count(type1) %>%
+  ggplot(aes(x = reorder(type1, n), y = n, fill = type1)) +
+  geom_bar(stat = "identity") + scale_y_log10() +
+  coord_flip() +
+  labs(title = "Distribuição do Tipo Primário de Pokémon", x = "Tipo1", y = "Frequência") +
+  theme_minimal()
+```
+
+```{r}
+#| eval: false
+# Distribuição do tipo2
+
+pokemon %>%
+  count(type2) %>%
+  ggplot(aes(x = reorder(type2, n), y = n, fill = type2)) +
+  geom_bar(stat = "identity") + scale_y_log10() +
+  coord_flip() +
+  labs(title = "Distribuição do Tipo Secundário de Pokémon", x = "Tipo2", y = "Frequência") +
+  theme_minimal()
+```
+
+```{r}
+#| eval: false
+# 5 Pokemons mais fortes (baseado na coluna total)
+pokemon |>
+  select(name,total,species,type1,type2,growth_rate) |>
+  filter(total>=mean(total)) |>
+  arrange(desc(total)) |>
+  head(5)
+```
+
+```{r}
+#| eval: false
+# 5 Pokemons mais fracos (baseado na coluna total)
+pokemon |>
+  select(name,total,species,type1,type2, growth_rate) |>
+  filter(total<mean(total)) |>
+  arrange((total)) |>
+  head(5)
+```
+
+```{r}
+#| eval: false
+# 5 pokemons mais difíceis de capturar
+pokemon |>
+  select(name,catch_rate,species,type1,type2, growth_rate) |>
+  filter(catch_rate<mean(catch_rate)) |>
+  arrange(catch_rate) |>
+  head(5)
+```
+
+```{r}
+#| eval: false
+# 5 pokemons mais fáceis de capturar
+pokemon |>
+  select(name,catch_rate,species,type1,type2, growth_rate) |>
+  filter(catch_rate>=mean(catch_rate)) |>
+  arrange(desc(catch_rate)) |>
+  head(5)
+```
+
+```{r}
+#| eval: false
+# Distribuição das gerações
+ggplot(data = pokemon) +
+  geom_bar(aes(x = generation, fill = "steelblue")) +
+  labs(title = "Quantidade de Pokémon por Geração", x = "Geração", y = "Frequência") +
+  theme_minimal()
+```
+
+```{r}
+#| eval: false
+leveneTest(pokemon$total ~ pokemon$generation)
+```
+
+```{r}
+#| eval: false
+# Verificar melhor geração baseado no total
+ggplot(pokemon, aes(x = generation, y = total, color=generation)) +
+  geom_violin() + stat_summary(fun.y=mean, geom="point", shape=23, size=5, fill = "black") +
+  geom_jitter(shape=16, position=position_jitter(0.2))
+```
+
+```{r}
+#| eval: false
+# Distribuição dos grupos especiais
+ggplot(data = pokemon) +
+  geom_bar(aes(x = special_group, fill = "tomato"),width = 0.6) + scale_y_log10() +
+  labs(title = "Quantidade de Pokémon por Grupos Especiais", x = "Special Group", y = "Frequência") +
+  theme_minimal()
+```
+
+```{r}
+#| eval: false
+leveneTest(pokemon$total ~ pokemon$special_group)
+```
+
+```{r}
+#| eval: false
+# Distribuição da taxa de crescimento
+ggplot(data = pokemon) +
+  geom_bar(aes(x = growth_rate, fill = "darkgreen")) + scale_y_log10() +
+  labs(title = "Quantidade de Pokémon por Taxa de Crescimento", x = "Growth Rate", y = "Frequência") +
+  theme_minimal()
+```
+
+```{r}
+#| eval: false
+leveneTest(pokemon$total ~ pokemon$growth_rate)
+```
+
+```{r}
+#| eval: false
+# Verificar melhor taxa de crescimento baseado no total
+ggplot(pokemon, aes(x = growth_rate, y = total, color=growth_rate)) +
+  geom_violin() + stat_summary(fun.y=mean, geom="point", shape=23, size=4, fill = "black") +
+  geom_jitter(shape=16, position=position_jitter(0.2))
+
+# Exemplos de pokemon que tem uma taxa de crescimento lenta e possuem total baixo
+```
+
+```{r}
+#| eval: false
+pokemon |>
+  select(name, total, growth_rate, type1, type2) |>
+  filter(growth_rate == "Slow") |>
+  arrange((total)) |>
+  head(3)
+```
+
+### 5.2 Códigos do Modelo
+
+```{r}
+#| eval: false
+# Excluindo colunas inutilizáveis para o modelo 
+pokemon$name = NULL
+pokemon$dexnum = NULL
+
+pokemon$percent_female = NULL
+pokemon$percent_male = NULL
+
+pokemon$species = NULL
+pokemon$ability1 = NULL
+pokemon$ability2 = NULL
+pokemon$hidden_ability = NULL
+
+pokemon$ev_yield = NULL
+```
+
+```{r}
+#| eval: false
+# Mudando special group para dicotomica
+pokemon = pokemon |>
+  mutate(
+    special_group = fct_recode(special_group,
+                               "Especiais"    = "Future Paradox",
+                               "Especiais"      = "Ancient Paradox",
+                               "Especiais" = "Ultra Beast",
+                               "Especiais" = "Baby Pokemon",
+                               "Especiais"        = "Fossil",
+                               "Especiais"      = "Legendary",
+                               "Especiais"                 = "Mythical",
+                               "Ordinary" = "Ordinary"))
+```
+
+```{r}
+#| eval: false
+# Omitindo linhas que possuem valores nulos (34 linhas)
+pokemon = na.omit(pokemon)
+```
+
+```{r}
+#| eval: false
+set.seed(123)
+amostra_teste = sample(1008,102)
+
+pokemon_treino = pokemon[-amostra_teste,]
+pokemon_teste = pokemon[amostra_teste,]
+
+print(paste("Dimensão da base de dados de treino:",dim(pokemon_treino)[1],",",dim(pokemon_treino)[2]))
+print(paste("Dimensão da base de dados de teste:",dim(pokemon_teste)[1],",",dim(pokemon_teste)[2]))
+```
+
+```{r}
+#| eval: false
+modelo_pokemon = C5.0(x = pokemon_treino[-c(20)], y = pokemon_treino$special_group)
+
+# Vamos ver como o modelo classifica os dados de teste
+pokemon_pred = predict(modelo_pokemon, pokemon_teste)
+pokemon_pred
+```
+
+```{r}
+#| eval: false
+# Capturando a saída do summary(modelo_credito)
+saida_summary <- capture.output(summary(modelo_pokemon))
+
+# Extraindo a seção "Attribute usage"
+attribute_usage_lines <- saida_summary[str_detect(saida_summary, "Attribute usage") + 1:length(saida_summary)]
+attribute_usage_lines <- attribute_usage_lines[str_detect(attribute_usage_lines, "^\\s+\\d+\\.\\d+%")]
+
+# Extraindo os nomes dos atributos e suas porcentagens de uso
+attribute_usage <- str_match_all(attribute_usage_lines, "\\s+(\\d+\\.\\d+)%\\s+(\\w+)")
+attribute_usage <- do.call(rbind, attribute_usage)
+attribute_usage <- as.data.frame(attribute_usage)
+colnames(attribute_usage) <- c("Match", "Usage", "Attribute")
+
+# Convertendo a coluna Usage para numérica
+attribute_usage$Usage <- as.numeric(attribute_usage$Usage)
+
+# Ordenando os atributos por uso (opcional, mas melhora a visualização)
+attribute_usage <- attribute_usage[order(-attribute_usage$Usage), ]
+
+# Criando o gráfico de barras para atributos mais utilizados com as porcentagens nas barras
+ggplot(attribute_usage, aes(x = reorder(Attribute, Usage), y = Usage)) +
+  geom_bar(stat = "identity", fill = "steelblue") +
+  geom_text(aes(label = paste0(Usage, "%")),  # Adiciona as porcentagens
+            hjust = -0.1,                     # Ajusta a posição horizontal do texto
+            size = 3.5,                        # Tamanho do texto
+            color = "black") +                 # Cor do texto
+  coord_flip() +                               # Inverte os eixos para facilitar a leitura
+  labs(
+    title = "Uso dos Atributos no Modelo",
+    x = "Atributos",
+    y = "Porcentagem de Uso (%)"
+  ) +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5))  # Centraliza o título
+```
+
+```{r}
+#| eval: false
+# Aplicando matriz de confusão
+matriz_conf = confusionMatrix(pokemon_pred, pokemon_teste$special_group)
+matriz_conf
+```
+
+```{r}
+#| eval: false
+# Vamos usar a função do pacote gmodels para comparar as classificações
+# do modelo aos dados de treinamento com a classificação real
+CrossTable(pokemon_teste$special_group, pokemon_pred,
+           prop.chisq = FALSE, prop.c = FALSE, prop.r = FALSE,
+           dnn = c("Grupos Especiais real", "Grupos Especiais predita"))
+```

@@ -1,0 +1,2293 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Luis Felipe Gomes de Oliveira">
+
+<title>Relatório Pokemon</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="pokemon quarto_files/libs/clipboard/clipboard.min.js"></script>
+<script src="pokemon quarto_files/libs/quarto-html/quarto.js"></script>
+<script src="pokemon quarto_files/libs/quarto-html/popper.min.js"></script>
+<script src="pokemon quarto_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="pokemon quarto_files/libs/quarto-html/anchor.min.js"></script>
+<link href="pokemon quarto_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="pokemon quarto_files/libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="pokemon quarto_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="pokemon quarto_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="pokemon quarto_files/libs/bootstrap/bootstrap-1bc8a17f135ab3d594c857e9f48e611b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="pokemon quarto_files/libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+
+<script src="pokemon quarto_files/libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Relatório Pokemon</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Autor</div>
+    <div class="quarto-title-meta-contents">
+             <p>Luis Felipe Gomes de Oliveira </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Data de Publicação</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">4 de julho de 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introdução" class="level2">
+<h2 class="anchored" data-anchor-id="introdução">1. Introdução <img src="dataset-cover.png" class="img-fluid"></h2>
+<p>Este relatório tem como objetivo apresentar uma visão geral dos dados do banco <a href="https://www.kaggle.com/datasets/guavocado/pokemon-stats-1025-pokemons" title="Pokemon Stats (1025 pokemons)">pokemon_data</a>, retirados do Kaggle, explorando características interessantes dos Pokémon, como seus <strong>tipos</strong>, <strong>grupos especiais</strong>, <strong>estatísticas totais</strong> e <strong>geração</strong>.</p>
+<p>Durante a análise, foram realizadas visualizações das distribuições dessas variáveis para identificar padrões e tendências, além da aplicação de um modelo de classificação para entender melhor as relações entre as características dos Pokémon.</p>
+<p>O foco é entender melhor como essas características se relacionam e o que elas podem nos ensinar sobre os Pokémon de diferentes gerações.</p>
+</section>
+<section id="análise-exploratória" class="level2">
+<h2 class="anchored" data-anchor-id="análise-exploratória">2. Análise Exploratória</h2>
+<section id="carregamento-dos-pacotes-e-dados" class="level3">
+<h3 class="anchored" data-anchor-id="carregamento-dos-pacotes-e-dados">2.1 Carregamento dos Pacotes e Dados</h3>
+<p>A primeira etapa para realizar uma AED é garantir que todos os pacotes necessários estão instalados e carregados corretamente. Neste caso, usamos pacotes como <code>tidyverse</code>, <code>C50</code>, <code>gmodels</code>, <code>knitr</code>, <code>dplyr</code>, <code>caret</code>, <code>car</code>, <code>stats</code> e <code>gtsummary</code> que são essenciais para manipulação de dados e análise estatística.</p>
+<p>Agora que as bibliotecas estão carregadas, carreguei o conjunto de dados pokemon para realizar a exploração inicial</p>
+<div class="cell">
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["dexnum"],"name":[1],"type":["int"],"align":["right"]},{"label":["name"],"name":[2],"type":["chr"],"align":["left"]},{"label":["generation"],"name":[3],"type":["int"],"align":["right"]},{"label":["type1"],"name":[4],"type":["chr"],"align":["left"]},{"label":["type2"],"name":[5],"type":["chr"],"align":["left"]},{"label":["species"],"name":[6],"type":["chr"],"align":["left"]},{"label":["height"],"name":[7],"type":["chr"],"align":["left"]},{"label":["weight"],"name":[8],"type":["chr"],"align":["left"]},{"label":["ability1"],"name":[9],"type":["chr"],"align":["left"]},{"label":["ability2"],"name":[10],"type":["chr"],"align":["left"]},{"label":["hidden_ability"],"name":[11],"type":["chr"],"align":["left"]},{"label":["hp"],"name":[12],"type":["int"],"align":["right"]},{"label":["attack"],"name":[13],"type":["int"],"align":["right"]},{"label":["defense"],"name":[14],"type":["int"],"align":["right"]},{"label":["sp_atk"],"name":[15],"type":["int"],"align":["right"]},{"label":["sp_def"],"name":[16],"type":["int"],"align":["right"]},{"label":["speed"],"name":[17],"type":["int"],"align":["right"]},{"label":["total"],"name":[18],"type":["int"],"align":["right"]},{"label":["ev_yield"],"name":[19],"type":["chr"],"align":["left"]},{"label":["catch_rate"],"name":[20],"type":["int"],"align":["right"]},{"label":["base_friendship"],"name":[21],"type":["chr"],"align":["left"]},{"label":["base_exp"],"name":[22],"type":["chr"],"align":["left"]},{"label":["growth_rate"],"name":[23],"type":["chr"],"align":["left"]},{"label":["egg_group1"],"name":[24],"type":["chr"],"align":["left"]},{"label":["egg_group2"],"name":[25],"type":["chr"],"align":["left"]},{"label":["percent_male"],"name":[26],"type":["chr"],"align":["left"]},{"label":["percent_female"],"name":[27],"type":["chr"],"align":["left"]},{"label":["egg_cycles"],"name":[28],"type":["chr"],"align":["left"]},{"label":["special_group"],"name":[29],"type":["chr"],"align":["left"]}],"data":[{"1":"1","2":"Bulbasaur","3":"1","4":"Grass","5":"Poison","6":"Seed Pokémon","7":"0.7","8":"6.9","9":"Overgrow","10":"Chlorophyll","11":"","12":"45","13":"49","14":"49","15":"65","16":"65","17":"45","18":"318","19":"1 Sp. Atk","20":"45","21":"50","22":"64","23":"Medium Slow","24":"Grass","25":"Monster","26":"87.5","27":"12.5","28":"20","29":"Ordinary","_rn_":"1"},{"1":"2","2":"Ivysaur","3":"1","4":"Grass","5":"Poison","6":"Seed Pokémon","7":"1.0","8":"13.0","9":"Overgrow","10":"Chlorophyll","11":"","12":"60","13":"62","14":"63","15":"80","16":"80","17":"60","18":"405","19":"1 Sp. Atk, 1 Sp. Def","20":"45","21":"50","22":"142","23":"Medium Slow","24":"Grass","25":"Monster","26":"87.5","27":"12.5","28":"20","29":"Ordinary","_rn_":"2"},{"1":"3","2":"Venusaur","3":"1","4":"Grass","5":"Poison","6":"Seed Pokémon","7":"2.0","8":"100.0","9":"Overgrow","10":"Chlorophyll","11":"","12":"80","13":"82","14":"83","15":"100","16":"100","17":"80","18":"525","19":"2 Sp. Atk, 1 Sp. Def","20":"45","21":"50","22":"236","23":"Medium Slow","24":"Grass","25":"Monster","26":"87.5","27":"12.5","28":"20","29":"Ordinary","_rn_":"3"},{"1":"4","2":"Charmander","3":"1","4":"Fire","5":"","6":"Lizard Pokémon","7":"0.6","8":"8.5","9":"Blaze","10":"Solar Power","11":"","12":"39","13":"52","14":"43","15":"60","16":"50","17":"65","18":"309","19":"1 Speed","20":"45","21":"50","22":"62","23":"Medium Slow","24":"Dragon","25":"Monster","26":"87.5","27":"12.5","28":"20","29":"Ordinary","_rn_":"4"},{"1":"5","2":"Charmeleon","3":"1","4":"Fire","5":"","6":"Flame Pokémon","7":"1.1","8":"19.0","9":"Blaze","10":"Solar Power","11":"","12":"58","13":"64","14":"58","15":"80","16":"65","17":"80","18":"405","19":"1 Sp. Atk, 1 Speed","20":"45","21":"50","22":"142","23":"Medium Slow","24":"Dragon","25":"Monster","26":"87.5","27":"12.5","28":"20","29":"Ordinary","_rn_":"5"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+</section>
+<section id="tratamento-dos-dados" class="level3">
+<h3 class="anchored" data-anchor-id="tratamento-dos-dados">2.2 Tratamento dos Dados</h3>
+<p>Para compreendermos melhor a base, é necessário observar os tipos de cada variável e sua disposição.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   1025 obs. of  29 variables:
+ $ dexnum         : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ name           : chr  "Bulbasaur" "Ivysaur" "Venusaur" "Charmander" ...
+ $ generation     : int  1 1 1 1 1 1 1 1 1 1 ...
+ $ type1          : chr  "Grass" "Grass" "Grass" "Fire" ...
+ $ type2          : chr  "Poison" "Poison" "Poison" "" ...
+ $ species        : chr  "Seed Pokémon" "Seed Pokémon" "Seed Pokémon" "Lizard Pokémon" ...
+ $ height         : chr  "0.7" "1.0" "2.0" "0.6" ...
+ $ weight         : chr  "6.9" "13.0" "100.0" "8.5" ...
+ $ ability1       : chr  "Overgrow" "Overgrow" "Overgrow" "Blaze" ...
+ $ ability2       : chr  "Chlorophyll" "Chlorophyll" "Chlorophyll" "Solar Power" ...
+ $ hidden_ability : chr  "" "" "" "" ...
+ $ hp             : int  45 60 80 39 58 78 44 59 79 45 ...
+ $ attack         : int  49 62 82 52 64 84 48 63 83 30 ...
+ $ defense        : int  49 63 83 43 58 78 65 80 100 35 ...
+ $ sp_atk         : int  65 80 100 60 80 109 50 65 85 20 ...
+ $ sp_def         : int  65 80 100 50 65 85 64 80 105 20 ...
+ $ speed          : int  45 60 80 65 80 100 43 58 78 45 ...
+ $ total          : int  318 405 525 309 405 534 314 405 530 195 ...
+ $ ev_yield       : chr  "1 Sp. Atk" "1 Sp. Atk, 1 Sp. Def" "2 Sp. Atk, 1 Sp. Def" "1 Speed" ...
+ $ catch_rate     : int  45 45 45 45 45 45 45 45 45 255 ...
+ $ base_friendship: chr  "50" "50" "50" "50" ...
+ $ base_exp       : chr  "64" "142" "236" "62" ...
+ $ growth_rate    : chr  "Medium Slow" "Medium Slow" "Medium Slow" "Medium Slow" ...
+ $ egg_group1     : chr  "Grass " "Grass " "Grass " "Dragon " ...
+ $ egg_group2     : chr  "Monster" "Monster" "Monster" "Monster" ...
+ $ percent_male   : chr  "87.5" "87.5" "87.5" "87.5" ...
+ $ percent_female : chr  "12.5" "12.5" "12.5" "12.5" ...
+ $ egg_cycles     : chr  "20" "20" "20" "20" ...
+ $ special_group  : chr  "Ordinary" "Ordinary" "Ordinary" "Ordinary" ...</code></pre>
+</div>
+</div>
+<section id="valores-ausentes-e-diversidades" class="level4">
+<h4 class="anchored" data-anchor-id="valores-ausentes-e-diversidades">2.2.1 Valores Ausentes e Diversidades</h4>
+<p>No banco de dados de Pokémon, os valores ausentes foram representados por strings vazias (““) em vez de <code>NA</code>. Além disso, foram realizadas verificações para identificar e corrigir espaços extras e possíveis valores duplicados.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "A quantidade de entradas duplicadas na base de dados é: 0"</code></pre>
+</div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Tipo2</th>
+<th style="text-align: right;">Proporção</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: right;">48.683</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Bug</td>
+<td style="text-align: right;">0.878</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Dark</td>
+<td style="text-align: right;">2.341</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Dragon</td>
+<td style="text-align: right;">3.220</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Electric</td>
+<td style="text-align: right;">0.976</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Fairy</td>
+<td style="text-align: right;">3.415</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Fighting</td>
+<td style="text-align: right;">3.220</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Fire</td>
+<td style="text-align: right;">1.463</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Flying</td>
+<td style="text-align: right;">9.756</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ghost</td>
+<td style="text-align: right;">2.927</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Grass</td>
+<td style="text-align: right;">2.341</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ground</td>
+<td style="text-align: right;">3.415</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ice</td>
+<td style="text-align: right;">1.659</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Normal</td>
+<td style="text-align: right;">1.268</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Poison</td>
+<td style="text-align: right;">4.000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Psychic</td>
+<td style="text-align: right;">4.098</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Rock</td>
+<td style="text-align: right;">1.561</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Steel</td>
+<td style="text-align: right;">2.829</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Water</td>
+<td style="text-align: right;">1.951</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Como algumas colunas continham uma quantidade considerável de valores ausentes, decidiu-se substituí-los por “Nenhum” por meio de uma função personalizada que verificava a presença da string (““) e realizava a substituição.</p>
+</section>
+<section id="alterando-o-tipo-das-tariáveis" class="level4">
+<h4 class="anchored" data-anchor-id="alterando-o-tipo-das-tariáveis">2.2.2 Alterando o Tipo das Tariáveis</h4>
+<p>Devido à substituição de strings, os valores de cada coluna foram convertidos para o formato <code>character</code>. Para corrigir isso, ajustamos os tipos das variáveis, convertendo algumas para o tipo fator e outras para <code>double</code> e <code>integer</code>, o que facilitou a análise.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   1025 obs. of  29 variables:
+ $ dexnum         : chr  "1" "2" "3" "4" ...
+ $ name           : chr  "Bulbasaur" "Ivysaur" "Venusaur" "Charmander" ...
+ $ generation     : Factor w/ 9 levels "1","2","3","4",..: 1 1 1 1 1 1 1 1 1 1 ...
+ $ type1          : chr  "Grass" "Grass" "Grass" "Fire" ...
+ $ type2          : chr  "Poison" "Poison" "Poison" "Nenhum" ...
+ $ species        : chr  "Seed Pokémon" "Seed Pokémon" "Seed Pokémon" "Lizard Pokémon" ...
+ $ height         : num  0.7 1 2 0.6 1.1 1.7 0.5 1 1.6 0.3 ...
+ $ weight         : num  6.9 13 100 8.5 19 90.5 9 22.5 85.5 2.9 ...
+ $ ability1       : chr  "Overgrow" "Overgrow" "Overgrow" "Blaze" ...
+ $ ability2       : chr  "Chlorophyll" "Chlorophyll" "Chlorophyll" "Solar Power" ...
+ $ hidden_ability : chr  "Nenhum" "Nenhum" "Nenhum" "Nenhum" ...
+ $ hp             : int  45 60 80 39 58 78 44 59 79 45 ...
+ $ attack         : int  49 62 82 52 64 84 48 63 83 30 ...
+ $ defense        : int  49 63 83 43 58 78 65 80 100 35 ...
+ $ sp_atk         : int  65 80 100 60 80 109 50 65 85 20 ...
+ $ sp_def         : int  65 80 100 50 65 85 64 80 105 20 ...
+ $ speed          : int  45 60 80 65 80 100 43 58 78 45 ...
+ $ total          : int  318 405 525 309 405 534 314 405 530 195 ...
+ $ ev_yield       : chr  "1 Sp. Atk" "1 Sp. Atk, 1 Sp. Def" "2 Sp. Atk, 1 Sp. Def" "1 Speed" ...
+ $ catch_rate     : int  45 45 45 45 45 45 45 45 45 255 ...
+ $ base_friendship: int  50 50 50 50 50 50 50 50 50 50 ...
+ $ base_exp       : int  64 142 236 62 142 267 63 142 239 39 ...
+ $ growth_rate    : Factor w/ 6 levels "Erratic","Fast",..: 5 5 5 5 5 5 5 5 5 4 ...
+ $ egg_group1     : Factor w/ 15 levels "Amorphous","Bug",..: 8 8 8 4 4 4 11 11 11 2 ...
+ $ egg_group2     : Factor w/ 12 levels "Dragon","Fairy",..: 8 8 8 8 8 8 10 10 10 9 ...
+ $ percent_male   : chr  "87.5" "87.5" "87.5" "87.5" ...
+ $ percent_female : chr  "12.5" "12.5" "12.5" "12.5" ...
+ $ egg_cycles     : Factor w/ 12 levels "—","10","120",..: 5 5 5 5 5 5 5 5 5 4 ...
+ $ special_group  : Factor w/ 8 levels "Ancient Paradox",..: 7 7 7 7 7 7 7 7 7 7 ...</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="descrição-dos-dados" class="level3">
+<h3 class="anchored" data-anchor-id="descrição-dos-dados">2.3 Descrição dos Dados</h3>
+<p>A tabela apresenta a <strong>estatística descritiva</strong> das variáveis contínuas e categóricas do banco de dados Pokémon, com <strong>N = 1,025</strong> observações. São mostradas as médias (Mean) e desvios padrão (SD) para as variáveis contínuas e a distribuição de frequências para a variável categórica <strong>base_friendship</strong>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="ybxctlxbrc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ybxctlxbrc table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#ybxctlxbrc thead, #ybxctlxbrc tbody, #ybxctlxbrc tfoot, #ybxctlxbrc tr, #ybxctlxbrc td, #ybxctlxbrc th {
+  border-style: none;
+}
+
+#ybxctlxbrc p {
+  margin: 0;
+  padding: 0;
+}
+
+#ybxctlxbrc .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#ybxctlxbrc .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#ybxctlxbrc .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#ybxctlxbrc .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#ybxctlxbrc .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ybxctlxbrc .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ybxctlxbrc .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ybxctlxbrc .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#ybxctlxbrc .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#ybxctlxbrc .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#ybxctlxbrc .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#ybxctlxbrc .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#ybxctlxbrc .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#ybxctlxbrc .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#ybxctlxbrc .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#ybxctlxbrc .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#ybxctlxbrc .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#ybxctlxbrc .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#ybxctlxbrc .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ybxctlxbrc .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#ybxctlxbrc .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#ybxctlxbrc .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#ybxctlxbrc .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ybxctlxbrc .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#ybxctlxbrc .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#ybxctlxbrc .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ybxctlxbrc .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ybxctlxbrc .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#ybxctlxbrc .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ybxctlxbrc .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#ybxctlxbrc .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ybxctlxbrc .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ybxctlxbrc .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ybxctlxbrc .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ybxctlxbrc .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ybxctlxbrc .gt_left {
+  text-align: left;
+}
+
+#ybxctlxbrc .gt_center {
+  text-align: center;
+}
+
+#ybxctlxbrc .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#ybxctlxbrc .gt_font_normal {
+  font-weight: normal;
+}
+
+#ybxctlxbrc .gt_font_bold {
+  font-weight: bold;
+}
+
+#ybxctlxbrc .gt_font_italic {
+  font-style: italic;
+}
+
+#ybxctlxbrc .gt_super {
+  font-size: 65%;
+}
+
+#ybxctlxbrc .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#ybxctlxbrc .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#ybxctlxbrc .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#ybxctlxbrc .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#ybxctlxbrc .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#ybxctlxbrc .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#ybxctlxbrc .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#ybxctlxbrc .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#ybxctlxbrc div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<caption>Estatística descritiva para variáveis contínuas</caption>
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="gt_col_headings header">
+<th id="label" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"><strong>Variável</strong></th>
+<th id="stat_0" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>N = 1,025</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">height</td>
+<td class="gt_row gt_center" headers="stat_0">1.2 (1.2)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">weight</td>
+<td class="gt_row gt_center" headers="stat_0">67.0 (121.3)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">hp</td>
+<td class="gt_row gt_center" headers="stat_0">70.2 (26.6)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">attack</td>
+<td class="gt_row gt_center" headers="stat_0">77.5 (29.8)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">defense</td>
+<td class="gt_row gt_center" headers="stat_0">72.5 (29.3)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">sp_atk</td>
+<td class="gt_row gt_center" headers="stat_0">70.1 (29.7)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">sp_def</td>
+<td class="gt_row gt_center" headers="stat_0">70.2 (26.6)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">speed</td>
+<td class="gt_row gt_center" headers="stat_0">67.2 (28.7)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">total</td>
+<td class="gt_row gt_center" headers="stat_0">427.7 (112.8)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">catch_rate</td>
+<td class="gt_row gt_center" headers="stat_0">94.9 (76.1)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">base_friendship</td>
+<td class="gt_row gt_center" headers="stat_0"><br>
+</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;0</td>
+<td class="gt_row gt_center" headers="stat_0">69 (6.8%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;20</td>
+<td class="gt_row gt_center" headers="stat_0">3 (0.3%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;35</td>
+<td class="gt_row gt_center" headers="stat_0">73 (7.2%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;50</td>
+<td class="gt_row gt_center" headers="stat_0">830 (82%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;70</td>
+<td class="gt_row gt_center" headers="stat_0">2 (0.2%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;90</td>
+<td class="gt_row gt_center" headers="stat_0">5 (0.5%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;100</td>
+<td class="gt_row gt_center" headers="stat_0">15 (1.5%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;140</td>
+<td class="gt_row gt_center" headers="stat_0">11 (1.1%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Unknown</td>
+<td class="gt_row gt_center" headers="stat_0">17</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">base_exp</td>
+<td class="gt_row gt_center" headers="stat_0">151.1 (80.6)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Unknown</td>
+<td class="gt_row gt_center" headers="stat_0">17</td>
+</tr>
+</tbody><tfoot class="gt_footnotes">
+<tr class="odd">
+<td colspan="2" class="gt_footnote"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> Mean (SD); n (%)</td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+<p>O teste de Kolmogorov-Smirnov (KS) foi aplicado às variáveis contínuas do banco de dados Pokémon para verificar a normalidade dos dados. O valor de p do teste indica se os dados seguem uma distribuição normal: <span class="math inline">\(p-valor &lt; 0,05\)</span> sugere que a variável não é normalmente distribuída, enquanto <span class="math inline">\(p &gt;= 0,05\)</span> sugere normalidade.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Resultados do Teste de Kolmogorov-Smirnov para Normalidade</caption>
+<colgroup>
+<col style="width: 22%">
+<col style="width: 15%">
+<col style="width: 62%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Variável</th>
+<th style="text-align: right;">Valor.de.p</th>
+<th style="text-align: left;">Interpretação</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Height</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: left;">Não segue uma distribuição normal (p &lt; 0.05)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Weight</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: left;">Não segue uma distribuição normal (p &lt; 0.05)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">HP</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: left;">Não segue uma distribuição normal (p &lt; 0.05)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Attack</td>
+<td style="text-align: right;">0.0003139</td>
+<td style="text-align: left;">Não segue uma distribuição normal (p &lt; 0.05)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Defense</td>
+<td style="text-align: right;">0.0000002</td>
+<td style="text-align: left;">Não segue uma distribuição normal (p &lt; 0.05)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Special Attack</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: left;">Não segue uma distribuição normal (p &lt; 0.05)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Special Defense</td>
+<td style="text-align: right;">0.0000195</td>
+<td style="text-align: left;">Não segue uma distribuição normal (p &lt; 0.05)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Speed</td>
+<td style="text-align: right;">0.0001689</td>
+<td style="text-align: left;">Não segue uma distribuição normal (p &lt; 0.05)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Total</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: left;">Não segue uma distribuição normal (p &lt; 0.05)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Catch Rate</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: left;">Não segue uma distribuição normal (p &lt; 0.05)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Base Friendship</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: left;">Não segue uma distribuição normal (p &lt; 0.05)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Base Exp</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: left;">Não segue uma distribuição normal (p &lt; 0.05)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><strong>Conclusões</strong>:</p>
+<ul>
+<li><p>Todas as variáveis testadas apresentam valores de p muito baixos (todos menores que 0,05), indicando que nenhuma delas segue uma distribuição normal.</p></li>
+<li><p>As variáveis do banco de dados Pokémon, como height, weight, hp, attack, defense, special attack, special defense, speed, total, catch rate, base friendship, e base exp não são normalmente distribuídas, de acordo com os resultados do teste de Kolmogorov-Smirnov.</p></li>
+</ul>
+<p>Afim de avaliar a variável <strong>Total</strong>, foi elaborado um histograma para visualizar seu comportamento:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pokemon-quarto_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>O objetivo seguinte foi comparar o peso e a altura entre três variáveis: <strong>geração</strong>, <strong>taxa de crescimento</strong> e <strong>grupos especiais</strong>. Para isso, foi aplicado o teste de Levene (teste de homogeneidade de variâncias), a fim de verificar se as variâncias dos grupos de cada variável eram homogêneas, permitindo comparações válidas de peso e altura entre eles.</p>
+<p>Como pode ser observado nas tabelas, não é possível realizar comparações entre os grupos devido à falta de homogeneidade de variâncias.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>  Variável   Valor.de.p               Conclusão
+1   Height 0.0092922822 Diferença significativa
+2   Weight 0.0001124656 Diferença significativa</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>  Variável   Valor.de.p               Conclusão
+1   Height 2.118328e-09 Diferença significativa
+2   Weight 3.994896e-35 Diferença significativa</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>  Variável   Valor.de.p               Conclusão
+1   Height 3.156801e-09 Diferença significativa
+2   Weight 3.702073e-21 Diferença significativa</code></pre>
+</div>
+</div>
+<hr>
+<section id="comparação-de-frequência-entre-os-tipos" class="level4">
+<h4 class="anchored" data-anchor-id="comparação-de-frequência-entre-os-tipos">2.3.1 Comparação de Frequência Entre os Tipos</h4>
+<p>Nos gráficos de barras abaixo, é possível observar que, no tipo primário de Pokémon, os tipos com maior frequência são: <strong>Água</strong> <strong>(13%)</strong>, <strong>Normal (11,5%)</strong>, <strong>Grama (10%)</strong>, <strong>Inseto (8%)</strong> e <strong>Fogo (6,5%)</strong>. Por outro lado, os tipos com menor frequência são: <strong>Voador (1%)</strong>, <strong>Fantasma (3,5%)</strong>, <strong>Gelo (3%)</strong>, <strong>Fada (3%)</strong> e <strong>Ferro (3,5%)</strong>.</p>
+<p>Já no tipo secundário, a categoria ‘Nenhum’ é predominante, com 50% de frequência. Ao comparar com o tipo primário, nota-se uma inversão: os tipos <strong>Voador (10%)</strong> e <strong>Fada (3,5%)</strong> têm maior frequência que <strong>Inseto (1%)</strong>, <strong>Normal (1%)</strong>, <strong>Fogo (1,5%)</strong> e <strong>Água (2%)</strong>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pokemon-quarto_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pokemon-quarto_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="fortes-e-fracos" class="level4">
+<h4 class="anchored" data-anchor-id="fortes-e-fracos">2.3.2 Fortes e Fracos</h4>
+<div class="cell">
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["total"],"name":[2],"type":["int"],"align":["right"]},{"label":["species"],"name":[3],"type":["chr"],"align":["left"]},{"label":["type1"],"name":[4],"type":["chr"],"align":["left"]},{"label":["type2"],"name":[5],"type":["chr"],"align":["left"]},{"label":["growth_rate"],"name":[6],"type":["fct"],"align":["left"]}],"data":[{"1":"Arceus","2":"720","3":"Alpha Pokémon","4":"Normal","5":"Nenhum","6":"Slow","_rn_":"1"},{"1":"Eternatus","2":"690","3":"Gigantic Pokémon","4":"Poison","5":"Dragon","6":"Slow","_rn_":"2"},{"1":"Mewtwo","2":"680","3":"Genetic Pokémon","4":"Psychic","5":"Nenhum","6":"Slow","_rn_":"3"},{"1":"Lugia","2":"680","3":"Diving Pokémon","4":"Psychic","5":"Flying","6":"Slow","_rn_":"4"},{"1":"Ho-oh","2":"680","3":"Rainbow Pokémon","4":"Fire","5":"Flying","6":"Slow","_rn_":"5"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Arceus<img src="Pokemons%20fortes/arceus.jpg" class="img-fluid"></th>
+<th>Eternatus<img src="Pokemons%20fortes/eternatus.jpg" class="img-fluid"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Mewtwo</strong><img src="Pokemons%20fortes/mewtwo.png" class="img-fluid" width="180"></td>
+<td><strong>Lugia</strong><img src="Pokemons%20fortes/lugia.jpg" width="200" height="150"></td>
+</tr>
+<tr class="even">
+<td><strong>Ho-Oh</strong><img src="Pokemons%20fortes/Ho-Oh.png" class="img-fluid" width="180"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Os 5 Pokémon mais fortes, com base na coluna <strong>total</strong>, têm as seguintes características:</p>
+<ul>
+<li><p><strong>Arceus</strong> é o mais forte com um total de <strong>720 pontos</strong> e é do tipo <strong>Normal</strong>.</p></li>
+<li><p><strong>Eternatus</strong>, <strong>Mewtwo</strong>, <strong>Lugia</strong> e <strong>Ho-oh</strong> têm <strong>680 pontos</strong>, com diferentes combinações de tipos:</p>
+<ul>
+<li><p><strong>Eternatus</strong> (Poison e Dragon),</p></li>
+<li><p><strong>Mewtwo</strong> (Psychic),</p></li>
+<li><p><strong>Lugia</strong> (Psychic e Flying),</p></li>
+<li><p><strong>Ho-oh</strong> (Fire e Flying).</p></li>
+</ul></li>
+</ul>
+<p>Além disso, todos esses Pokémon têm uma <strong>taxa de crescimento lenta</strong> (<strong>Slow</strong>), o que significa que eles evoluem de forma mais gradual.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["total"],"name":[2],"type":["int"],"align":["right"]},{"label":["species"],"name":[3],"type":["chr"],"align":["left"]},{"label":["type1"],"name":[4],"type":["chr"],"align":["left"]},{"label":["type2"],"name":[5],"type":["chr"],"align":["left"]},{"label":["growth_rate"],"name":[6],"type":["fct"],"align":["left"]}],"data":[{"1":"Wishiwashi","2":"175","3":"Small Fry Pokémon","4":"Water","5":"Nenhum","6":"Fast","_rn_":"1"},{"1":"Sunkern","2":"180","3":"Seed Pokémon","4":"Grass","5":"Nenhum","6":"Medium Slow","_rn_":"2"},{"1":"Blipbug","2":"180","3":"Larva Pokémon","4":"Bug","5":"Nenhum","6":"Medium Fast","_rn_":"3"},{"1":"Snom","2":"185","3":"Worm Pokémon","4":"Ice","5":"Bug","6":"Medium Fast","_rn_":"4"},{"1":"Azurill","2":"190","3":"Polka Dot Pokémon","4":"Normal","5":"Fairy","6":"Fast","_rn_":"5"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Wishiwashi<img src="Pokemons%20fracos/wishiwashi.jpg" class="img-fluid" width="200"></th>
+<th>Sunkern<img src="Pokemons%20fracos/sunkern.png" class="img-fluid" width="180"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Blipbug</strong><img src="Pokemons%20fracos/blipbug.png" class="img-fluid" width="180"></td>
+<td><strong>Snom</strong><img src="Pokemons%20fracos/snom.jpg" width="200" height="150"></td>
+</tr>
+<tr class="even">
+<td><strong>Azurill</strong><img src="Pokemons%20fracos/azurill.png" class="img-fluid" width="180"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>Os <strong>5 Pokémon mais fracos</strong> possuem totais de pontos muito baixos, variando entre <strong>175 e 190 pontos</strong>.</p></li>
+<li><p>Eles possuem tipos primários variados como <strong>Water</strong>, <strong>Grass</strong>, <strong>Bug</strong>, <strong>Ice</strong>, e <strong>Normal</strong>, e apenas <strong>Azurill</strong> e <strong>Snom</strong> têm tipos secundários (<strong>Fairy</strong> e <strong>Bug</strong>, respectivamente).</p></li>
+<li><p>A <strong>taxa de crescimento</strong> varia: <strong>Wishiwashi</strong> e <strong>Azurill</strong> têm crescimento <strong>rápido</strong>, enquanto <strong>Sunkern</strong> tem <strong>crescimento médio lento</strong>, e <strong>Blipbug</strong> e <strong>Snom</strong> têm <strong>crescimento médio rápido</strong>.</p></li>
+</ul>
+<p>Esses Pokémon são mais fracos em termos de pontos totais, mas suas taxas de crescimento podem ser um ponto positivo, permitindo que evoluam de forma relativamente rápida.</p>
+</section>
+<section id="captura-dos-pokemons" class="level4">
+<h4 class="anchored" data-anchor-id="captura-dos-pokemons">2.3.3 Captura dos pokemons</h4>
+<div class="cell">
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["catch_rate"],"name":[2],"type":["int"],"align":["right"]},{"label":["species"],"name":[3],"type":["chr"],"align":["left"]},{"label":["type1"],"name":[4],"type":["chr"],"align":["left"]},{"label":["type2"],"name":[5],"type":["chr"],"align":["left"]},{"label":["growth_rate"],"name":[6],"type":["fct"],"align":["left"]}],"data":[{"1":"Articuno","2":"3","3":"Freeze Pokémon","4":"Ice","5":"Flying","6":"Slow","_rn_":"1"},{"1":"Zapdos","2":"3","3":"Electric Pokémon","4":"Electric","5":"Flying","6":"Slow","_rn_":"2"},{"1":"Moltres","2":"3","3":"Flame Pokémon","4":"Fire","5":"Flying","6":"Slow","_rn_":"3"},{"1":"Mewtwo","2":"3","3":"Genetic Pokémon","4":"Psychic","5":"Nenhum","6":"Slow","_rn_":"4"},{"1":"Raikou","2":"3","3":"Thunder Pokémon","4":"Electric","5":"Nenhum","6":"Slow","_rn_":"5"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Articuno<img src="pokemons%20dificeis/articunos.png" class="img-fluid" width="200"></th>
+<th>Zapdos<img src="pokemons%20dificeis/zapdos.png" class="img-fluid" width="180"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Moltres</strong><img src="pokemons%20dificeis/moltres.jpg" class="img-fluid" width="180"></td>
+<td><strong>Mewtwo</strong><img src="pokemons%20dificeis/mewtwo.png" width="200" height="150"></td>
+</tr>
+<tr class="even">
+<td><strong>Raikou</strong><img src="pokemons%20dificeis/Raikou.png" class="img-fluid" width="180"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>Todos esses Pokémon têm uma <strong>taxa de captura igual a 3</strong>, o que significa que são extremamente difíceis de capturar. Isso é comum entre Pokémon lendários e míticos, que geralmente possuem uma taxa de captura muito baixa.</p></li>
+<li><p>Em relação aos <strong>tipos</strong>, esses Pokémon possuem tipos primários como <strong>Ice</strong>, <strong>Electric</strong>, <strong>Fire</strong>, <strong>Psychic</strong> e <strong>Electric</strong>. Apenas <strong>Mewtwo</strong> e <strong>Raikou</strong> não têm um tipo secundário.</p></li>
+<li><p>A <strong>taxa de crescimento</strong> de todos esses Pokémon é <strong>lenta</strong>, o que indica que eles são Pokémon raros e poderosos que evoluem ou são obtidos de forma mais difícil ao longo do tempo.</p></li>
+</ul>
+<p>Esses Pokémon são conhecidos por sua raridade e dificuldade de captura, refletindo seu status de Pokémon lendário e poderoso no universo Pokémon.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["catch_rate"],"name":[2],"type":["int"],"align":["right"]},{"label":["species"],"name":[3],"type":["chr"],"align":["left"]},{"label":["type1"],"name":[4],"type":["chr"],"align":["left"]},{"label":["type2"],"name":[5],"type":["chr"],"align":["left"]},{"label":["growth_rate"],"name":[6],"type":["fct"],"align":["left"]}],"data":[{"1":"Caterpie","2":"255","3":"Worm Pokémon","4":"Bug","5":"Nenhum","6":"Medium Fast","_rn_":"1"},{"1":"Weedle","2":"255","3":"Hairy Bug Pokémon","4":"Bug","5":"Poison","6":"Medium Fast","_rn_":"2"},{"1":"Pidgey","2":"255","3":"Tiny Bird Pokémon","4":"Normal","5":"Flying","6":"Medium Slow","_rn_":"3"},{"1":"Rattata","2":"255","3":"Mouse Pokémon","4":"Normal","5":"Nenhum","6":"Medium Fast","_rn_":"4"},{"1":"Spearow","2":"255","3":"Tiny Bird Pokémon","4":"Normal","5":"Flying","6":"Medium Fast","_rn_":"5"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Caterpie<img src="pokemons%20faceis/caterpie.jpg" class="img-fluid" width="200"></th>
+<th>Weedle<img src="pokemons%20faceis/Weedle.png" class="img-fluid" width="180"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Pidgey</strong><img src="pokemons%20faceis/pidgey.png" class="img-fluid" width="180"></td>
+<td><strong>Rattata</strong><img src="pokemons%20faceis/rattata.png" width="200" height="150"></td>
+</tr>
+<tr class="even">
+<td><strong>Spearow</strong><img src="pokemons%20faceis/spearow.jpg" class="img-fluid" width="180"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Os cinco Pokémon mais fáceis de capturar possuem uma taxa de captura de <strong>255</strong>, o que indica que são extremamente fáceis de capturar no jogo. Isso é comum entre Pokémon iniciais ou comuns, que têm uma taxa de captura muito alta.</p>
+<p>Quanto aos tipos, todos esses Pokémon têm tipos primários como <strong>Bug</strong>, <strong>Normal</strong> e <strong>Flying</strong>, com Weedle sendo o único com um tipo secundário, <strong>Poison</strong>.</p>
+<p>A taxa de crescimento desses Pokémon é <strong>Medium Fast</strong> para a maioria deles, exceto <strong>Pidgey</strong>, que possui <strong>Medium Slow</strong>. Isso sugere que eles são Pokémon de fácil acesso, com evolução relativamente rápida ou moderada.</p>
+<p>Esses Pokémon são conhecidos por sua facilidade de captura, sendo populares entre jogadores que estão no início da jornada ou buscando Pokémon de fácil obtenção.</p>
+</section>
+<section id="analisando-geração-grupos-especiais-e-taxa-de-crescimento" class="level4">
+<h4 class="anchored" data-anchor-id="analisando-geração-grupos-especiais-e-taxa-de-crescimento">2.3.4 Analisando Geração, Grupos Especiais e Taxa de Crescimento</h4>
+<p><strong>– Distribuição de Pokémon por Geração:</strong> A análise da quantidade de Pokémon por geração, representada pelo gráfico de barras, revela que a <strong>primeira</strong>, <strong>terceira</strong> e <strong>quinta</strong> gerações possuem a maior frequência de Pokémon. Essa distribuição destaca como essas gerações tiveram um número mais expressivo de criaturas ao longo das edições.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pokemon-quarto_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Aplicação do Teste de Levene:</strong></p>
+<div class="cell">
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Df"],"name":[1],"type":["int"],"align":["right"]},{"label":["F value"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Pr(>F)"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"8","2":"0.3842574","3":"0.9293368","_rn_":"group"},{"1":"1016","2":"NA","3":"NA","_rn_":""}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p><strong>– Comparação de Atributos por Geração:</strong> Ao observarmos o gráfico de violino, que ilustra a distribuição dos atributos totais por geração, é possível notar que as gerações <strong>sexta</strong>, <strong>sétima</strong> e <strong>oitava</strong> possuem médias de atributos semelhantes às das gerações anteriores. Isso sugere um equilíbrio no poder geral dos Pokémon, independentemente da geração, indicando que os Pokémon mais recentes são tão fortes quanto os das gerações passadas.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pokemon-quarto_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>– Distribuição dos Grupos Especiais de Pokémon:</strong> A análise da distribuição dos grupos especiais de Pokémon, apresentada no gráfico de barras, mostra que a categoria Ordinary é a mais frequente, destacando-se entre os demais grupos. No entanto, essa alta frequência não implica em maior força, já que a categoria Ordinary inclui muitos Pokémon com atributos totais mais baixos.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pokemon-quarto_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Aplicação do Teste de Levene:</strong></p>
+<div class="cell">
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Df"],"name":[1],"type":["int"],"align":["right"]},{"label":["F value"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Pr(>F)"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"7","2":"18.3944","3":"3.672129e-23","_rn_":"group"},{"1":"1017","2":"NA","3":"NA","_rn_":""}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Com base no resultado do p-valor, que foi inferior a 0,05, podemos concluir que não há homogeneidade de variância. Portanto, não foi possível realizar comparações em relação à variável total de atributos.</p>
+<p><strong>- Distribuição das Taxas de Crescimento de Pokémon:</strong> O gráfico de barras que mostra a distribuição das taxas de crescimento dos Pokémon revela que as categorias Medium Fast, Medium Slow e Slow são as mais frequentes. Essas categorias representam a maioria dos Pokémon e refletem diferentes ritmos de evolução.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pokemon-quarto_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Aplicação do Teste de Levene:</strong></p>
+<div class="cell">
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Df"],"name":[1],"type":["int"],"align":["right"]},{"label":["F value"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Pr(>F)"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"5","2":"0.5614205","3":"0.7296546","_rn_":"group"},{"1":"1019","2":"NA","3":"NA","_rn_":""}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p><strong>- Comparação de Atributos por Taxa de Crescimento:</strong> Ao analisar o gráfico de violino, que apresenta a distribuição dos atributos totais por taxa de crescimento, observa-se que as categorias Medium Fast e Medium Slow geralmente possuem Pokémon com valores totais de atributos abaixo da média. Esses Pokémon frequentemente possuem a capacidade de evoluir, o que compensa seus valores iniciais mais baixos.</p>
+<p>Por outro lado, a categoria Slow é um grupo misto: inclui tanto Pokémon mais fracos, com baixos valores de atributos e dificuldade para evoluir, quanto Pokémon extremamente fortes, que não precisam mais evoluir. Isso resulta em uma distribuição mais dispersa, com valores totais de atributos variados.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pokemon-quarto_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Exemplos:</strong></p>
+<div class="cell">
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["total"],"name":[2],"type":["int"],"align":["right"]},{"label":["growth_rate"],"name":[3],"type":["fct"],"align":["left"]},{"label":["type1"],"name":[4],"type":["chr"],"align":["left"]},{"label":["type2"],"name":[5],"type":["chr"],"align":["left"]}],"data":[{"1":"Ralts","2":"198","3":"Slow","4":"Psychic","5":"Fairy","_rn_":"1"},{"1":"Magikarp","2":"200","3":"Slow","4":"Water","5":"Nenhum","_rn_":"2"},{"1":"Cosmog","2":"200","3":"Slow","4":"Psychic","5":"Nenhum","_rn_":"3"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Ralts</strong><img src="exemplos/ralts.png" class="img-fluid"></td>
+<td><strong>Kirlia</strong><img src="exemplos/evo%20ralts.png" class="img-fluid"></td>
+</tr>
+<tr class="even">
+<td><strong>Magikarp</strong><img src="exemplos/magikarp.png" class="img-fluid"></td>
+<td><strong>Gyarados</strong><img src="exemplos/evo%20magikarp.png" class="img-fluid"></td>
+</tr>
+<tr class="odd">
+<td><strong>Cosmog</strong><img src="exemplos/cosmog.png" class="img-fluid"></td>
+<td><strong>Cosmoem</strong><img src="exemplos/evo%20cosmog.png" class="img-fluid"></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+<section id="modelo-de-classificação" class="level2">
+<h2 class="anchored" data-anchor-id="modelo-de-classificação">3. Modelo de Classificação</h2>
+<section id="pré---tratamento" class="level3">
+<h3 class="anchored" data-anchor-id="pré---tratamento">3.1 Pré - Tratamento</h3>
+<ol type="1">
+<li><strong>Exclusão de colunas irrelevantes:</strong> Inicialmente, excluí as colunas que dificultavam a identificação de padrões no modelo, devido à alta quantidade de valores. Essas colunas foram:
+<ul>
+<li><code>name</code></li>
+<li><code>dexnum</code></li>
+<li><code>percent_male</code></li>
+<li><code>percent_female</code></li>
+<li><code>species</code></li>
+<li><code>ability1</code></li>
+<li><code>ability2</code></li>
+<li><code>hidden_ability</code></li>
+<li><code>ev_yield</code></li>
+</ul></li>
+<li><strong>Transformação da variável resposta em dicotômica:</strong> Em seguida, transformei a variável resposta (<code>special_group</code>) em uma variável dicotômica. O primeiro valor foi recodificado como “Especiais”, englobando as categorias:
+<ul>
+<li>“Future Paradox”</li>
+<li>“Ancient Paradox”</li>
+<li>“Ultra Beast”</li>
+<li>“Baby Pokemon”</li>
+<li>“Fossil”</li>
+<li>“Legendary”</li>
+<li>“Mythical”</li>
+</ul></li>
+</ol>
+<p>O segundo valor foi mantido como “Ordinary” para os valores já classificados como “Ordinary”.</p>
+<ol start="3" type="1">
+<li><strong>Omissão de linhas nulas:</strong> Por fim, omiti as linhas com valores nulos, totalizando 34 linhas. Essas linhas estavam nas variáveis <code>height</code> (17 linhas) e <code>width</code> (17 linhas).</li>
+</ol>
+<p>Foi definida uma semente (123) para evitar a criação de amostras aleatórias. Em seguida, as bases de dados de treino e teste foram criadas, sendo que a base de treino corresponde a 90% da base original e a base de teste a 10%.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Dimensão da base de dados de treino: 906 , 20"</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Dimensão da base de dados de teste: 102 , 20"</code></pre>
+</div>
+</div>
+</section>
+<section id="aplicando-o-modelo" class="level3">
+<h3 class="anchored" data-anchor-id="aplicando-o-modelo">3.2 Aplicando o Modelo</h3>
+<p>Após configurar o modelo C5.0 para a base de dados de treino, utilizando a coluna <code>special_group</code> como variável resposta e as demais como previsoras, aplicamos o <code>modelo_pokemon</code> na base de teste, obtendo a seguinte classificação:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>  [1] Ordinary  Ordinary  Ordinary  Ordinary  Ordinary  Ordinary  Ordinary 
+  [8] Ordinary  Ordinary  Ordinary  Especiais Ordinary  Ordinary  Ordinary 
+ [15] Ordinary  Ordinary  Ordinary  Ordinary  Ordinary  Ordinary  Especiais
+ [22] Especiais Ordinary  Ordinary  Ordinary  Ordinary  Ordinary  Especiais
+ [29] Ordinary  Ordinary  Ordinary  Ordinary  Ordinary  Ordinary  Ordinary 
+ [36] Ordinary  Ordinary  Ordinary  Ordinary  Ordinary  Especiais Ordinary 
+ [43] Especiais Ordinary  Ordinary  Ordinary  Ordinary  Ordinary  Ordinary 
+ [50] Ordinary  Ordinary  Ordinary  Ordinary  Ordinary  Ordinary  Ordinary 
+ [57] Ordinary  Ordinary  Ordinary  Ordinary  Especiais Ordinary  Ordinary 
+ [64] Ordinary  Ordinary  Ordinary  Ordinary  Especiais Ordinary  Ordinary 
+ [71] Ordinary  Ordinary  Ordinary  Ordinary  Ordinary  Ordinary  Ordinary 
+ [78] Ordinary  Ordinary  Ordinary  Ordinary  Ordinary  Ordinary  Ordinary 
+ [85] Ordinary  Ordinary  Especiais Ordinary  Ordinary  Ordinary  Ordinary 
+ [92] Especiais Ordinary  Especiais Ordinary  Ordinary  Ordinary  Ordinary 
+ [99] Ordinary  Ordinary  Especiais Ordinary 
+Levels: Especiais Ordinary</code></pre>
+</div>
+</div>
+<p>Realizou-se a extração dos atributos utilizados para a criação da árvore. Como pode ser observado no gráfico de barras a seguir, as únicas variáveis selecionadas foram <code>egg_group1</code>, <code>egg_cycles</code> e <code>catch_rate</code>, classificadas em ordem de importância com 100%, 85,54% e 2,76%, respectivamente.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pokemon-quarto_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="avaliação" class="level3">
+<h3 class="anchored" data-anchor-id="avaliação">3.3 Avaliação</h3>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Confusion Matrix and Statistics
+
+           Reference
+Prediction  Especiais Ordinary
+  Especiais        11        1
+  Ordinary          1       89
+                                         
+               Accuracy : 0.9804         
+                 95% CI : (0.931, 0.9976)
+    No Information Rate : 0.8824         
+    P-Value [Acc &gt; NIR] : 0.0003031      
+                                         
+                  Kappa : 0.9056         
+                                         
+ Mcnemar's Test P-Value : 1.0000000      
+                                         
+            Sensitivity : 0.9167         
+            Specificity : 0.9889         
+         Pos Pred Value : 0.9167         
+         Neg Pred Value : 0.9889         
+             Prevalence : 0.1176         
+         Detection Rate : 0.1078         
+   Detection Prevalence : 0.1176         
+      Balanced Accuracy : 0.9528         
+                                         
+       'Positive' Class : Especiais      
+                                         </code></pre>
+</div>
+</div>
+<p>Ao comparar a previsão do modelo com a base de dados de teste, obtivemos uma acurácia de 98%, o que é significativamente alto, com um erro relativamente pequeno</p>
+<p><strong>Para uma melhor visualização da tabela comparativa entre as previsões e os valores reais</strong>:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ 
+   Cell Contents
+|-------------------------|
+|                       N |
+|         N / Table Total |
+|-------------------------|
+
+ 
+Total Observations in Table:  102 
+
+ 
+                      | Grupos Especiais predita 
+Grupos Especiais real | Especiais |  Ordinary | Row Total | 
+----------------------|-----------|-----------|-----------|
+            Especiais |        11 |         1 |        12 | 
+                      |     0.108 |     0.010 |           | 
+----------------------|-----------|-----------|-----------|
+             Ordinary |         1 |        89 |        90 | 
+                      |     0.010 |     0.873 |           | 
+----------------------|-----------|-----------|-----------|
+         Column Total |        12 |        90 |       102 | 
+----------------------|-----------|-----------|-----------|
+
+ </code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="conclusão" class="level2">
+<h2 class="anchored" data-anchor-id="conclusão">4. Conclusão</h2>
+<p>O relatório apresentou uma análise detalhada dos dados do banco pokemon_data, explorando características como tipos, grupos especiais, estatísticas e gerações dos Pokémon. A análise revelou padrões interessantes, como a predominância dos tipos Água e Normal no tipo primário, enquanto o tipo secundário foi majoritariamente ausente (“Nenhum”). Pokémon lendários, como Arceus e Mewtwo, destacaram-se por seus altos valores de atributos totais e taxas de crescimento lentas, enquanto Pokémon comuns, como Caterpie e Pidgey, foram identificados como os mais fáceis de capturar.</p>
+<p>A distribuição por geração mostrou que as primeiras, terceiras e quintas gerações possuem a maior quantidade de Pokémon, com equilíbrio nos atributos totais entre gerações mais antigas e recentes. Além disso, a categoria “Ordinary” foi a mais frequente entre os grupos especiais, embora não necessariamente a mais forte. O modelo de classificação aplicado alcançou alta acurácia (98%), utilizando variáveis como egg_group1, egg_cycles e catch_rate para prever grupos especiais.</p>
+<p>Em resumo, a análise forneceu insights valiosos sobre as características dos Pokémon, destacando a importância de entender sua distribuição e atributos para estratégias competitivas. A aplicação de técnicas de ciência de dados demonstrou como a exploração contínua de dados pode auxiliar treinadores a adaptar suas táticas em um metagame em constante evolução.</p>
+</section>
+<section id="anexos" class="level2">
+<h2 class="anchored" data-anchor-id="anexos">5. Anexos</h2>
+<section id="códigos-da-análise-exploratória" class="level3">
+<h3 class="anchored" data-anchor-id="códigos-da-análise-exploratória">5.1 Códigos da Análise Exploratória</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>pacotes <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"tidyverse"</span>,<span class="st">"C50"</span>,<span class="st">"gmodels"</span>,<span class="st">"dplyr"</span>,<span class="st">"knitr"</span>,<span class="st">"gtsummary"</span>,<span class="st">"caret"</span>,<span class="st">"car"</span>,<span class="st">"stats"</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Verifica se cada pacote está instalado e instala caso contrário</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>pacotes_nao_instalados <span class="ot">&lt;-</span> pacotes[<span class="sc">!</span>(pacotes <span class="sc">%in%</span> <span class="fu">installed.packages</span>()[, <span class="st">"Package"</span>])]</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">length</span>(pacotes_nao_instalados) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install.packages</span>(pacotes_nao_instalados)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(pacotes, library, <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carrega a base de dados em formato csv</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>pokemon <span class="ot">=</span> <span class="fu">read.csv2</span>(<span class="st">"~/R/PROJETOS R/Análise pokemon/pokemon_data.csv"</span>, <span class="at">header =</span> T, <span class="at">sep =</span> <span class="st">","</span>, <span class="at">fileEncoding =</span> <span class="st">"UTF-8"</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Verifica as 5 primeiras linhas do data frame</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pokemon, <span class="dv">5</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificando o tipo de cada variável</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(pokemon)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificando se há entradas duplicadas</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"A quantidade de entradas duplicadas na base de dados é:"</span>, <span class="fu">sum</span>(<span class="fu">duplicated</span>(pokemon))))</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Retirando espaços em branco com trimws</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>pokemon <span class="ot">=</span> <span class="fu">apply</span>(pokemon,<span class="dv">2</span>,trimws)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>pokemon <span class="ot">=</span> <span class="fu">as.data.frame</span>(pokemon)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificando a presença do valor "vazio"</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>tabela <span class="ot">=</span> <span class="fu">prop.table</span>(<span class="fu">table</span>(pokemon<span class="sc">$</span>type2))<span class="sc">*</span><span class="dv">100</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>tabela_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(tabela)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Exibindo como tabela formatada</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tabela_df, <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Tipo2"</span>, <span class="st">"Proporção"</span>), <span class="at">digits =</span> <span class="dv">3</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando uma função para substituição do valor "vazio"</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>subst_vazios <span class="ot">=</span> <span class="cf">function</span>(col){</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ifelse</span>(col <span class="sc">==</span> <span class="st">""</span>, <span class="st">"Nenhum"</span>, col)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Aplicando a função de substituição</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>pokemon <span class="ot">=</span> <span class="fu">apply</span>(pokemon, <span class="dv">2</span>, subst_vazios)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>pokemon <span class="ot">=</span> <span class="fu">as.data.frame</span>(pokemon)</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificando a presença do valor "vazio" novamente</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>tabela <span class="ot">=</span> <span class="fu">prop.table</span>(<span class="fu">table</span>(pokemon<span class="sc">$</span>type2))<span class="sc">*</span><span class="dv">100</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>tabela_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(tabela)</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Exibindo como tabela formatada</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tabela_df, <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Tipo2"</span>, <span class="st">"Proporção"</span>), <span class="at">digits =</span> <span class="dv">3</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attach</span>(pokemon)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Alterando o tipo das colunas</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Fator</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>pokemon<span class="sc">$</span>generation <span class="ot">=</span> <span class="fu">as.factor</span>(generation)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>pokemon<span class="sc">$</span>special_group <span class="ot">=</span> <span class="fu">as.factor</span>(special_group)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>pokemon<span class="sc">$</span>egg_cycles <span class="ot">=</span> <span class="fu">as.factor</span>(egg_cycles)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>pokemon<span class="sc">$</span>egg_group1 <span class="ot">=</span> <span class="fu">as.factor</span>(egg_group1)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>pokemon<span class="sc">$</span>egg_group2 <span class="ot">=</span> <span class="fu">as.factor</span>(egg_group2)</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>pokemon<span class="sc">$</span>growth_rate <span class="ot">=</span> <span class="fu">as.factor</span>(growth_rate)</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Inteiros e Reais</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>pokemon<span class="sc">$</span>height <span class="ot">=</span> <span class="fu">as.double</span>(height)</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>pokemon<span class="sc">$</span>weight <span class="ot">=</span> <span class="fu">as.double</span>(weight)</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>pokemon<span class="sc">$</span>hp <span class="ot">=</span> <span class="fu">as.integer</span>(hp)</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>pokemon<span class="sc">$</span>attack <span class="ot">=</span> <span class="fu">as.integer</span>(attack)</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>pokemon<span class="sc">$</span>defense <span class="ot">=</span> <span class="fu">as.integer</span>(defense)</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>pokemon<span class="sc">$</span>speed <span class="ot">=</span> <span class="fu">as.integer</span>(speed)</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>pokemon<span class="sc">$</span>sp_atk <span class="ot">=</span> <span class="fu">as.integer</span>(sp_atk)</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>pokemon<span class="sc">$</span>sp_def <span class="ot">=</span> <span class="fu">as.integer</span>(sp_def)</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>pokemon<span class="sc">$</span>total <span class="ot">=</span> <span class="fu">as.integer</span>(total)</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>pokemon<span class="sc">$</span>base_exp <span class="ot">=</span> <span class="fu">as.integer</span>(base_exp)</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>pokemon<span class="sc">$</span>catch_rate <span class="ot">=</span> <span class="fu">as.integer</span>(catch_rate)</span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>pokemon<span class="sc">$</span>base_friendship <span class="ot">=</span> <span class="fu">as.integer</span>(base_friendship)</span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(pokemon)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tabela resumo das variáveis contínuas</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>pokemon <span class="sc">|&gt;</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">where</span>(is.numeric)) <span class="sc">|&gt;</span>  <span class="co"># Seleciona apenas as variáveis numéricas</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_summary</span>(</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">statistic =</span> <span class="fu">list</span>(<span class="fu">all_continuous</span>()  <span class="sc">~</span> <span class="st">"{mean} ({sd})"</span>),</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">digits =</span> <span class="fu">list</span>(<span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">modify_header</span>(<span class="at">label =</span> <span class="st">"**Variável**"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">modify_caption</span>(<span class="st">"Estatística descritiva para variáveis contínuas"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bold_labels</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Função para aplicar o ks.test a cada coluna com a distribuição normal</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>ks_test_results <span class="ot">=</span> pokemon <span class="sc">%&gt;%</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">where</span>(is.numeric)) <span class="sc">%&gt;%</span>  <span class="co"># Seleciona apenas variáveis numéricas</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), </span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>                   <span class="sc">~</span> <span class="fu">ks.test</span>(.x, <span class="st">"pnorm"</span>, <span class="at">mean =</span> <span class="fu">mean</span>(.x), <span class="at">sd =</span> <span class="fu">sd</span>(.x))<span class="sc">$</span>p.value))</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Criar uma tabela com os resultados do teste de Kolmogorov-Smirnov</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>resultados_ks <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  Variável <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Height"</span>, <span class="st">"Weight"</span>, <span class="st">"HP"</span>, <span class="st">"Attack"</span>, <span class="st">"Defense"</span>, </span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>               <span class="st">"Special Attack"</span>, <span class="st">"Special Defense"</span>, <span class="st">"Speed"</span>, <span class="st">"Total"</span>, </span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>               <span class="st">"Catch Rate"</span>, <span class="st">"Base Friendship"</span>, <span class="st">"Base Exp"</span>),</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Valor de p</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">7.85e-37</span>, <span class="fl">7.07e-75</span>, <span class="fl">3.60e-08</span>, <span class="fl">0.0003139477</span>, <span class="fl">2.37e-07</span>, </span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>                   <span class="fl">1.16e-09</span>, <span class="fl">1.95e-05</span>, <span class="fl">0.0001688998</span>, <span class="fl">1.88e-08</span>, <span class="fl">1.11e-38</span>, </span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>                   <span class="fl">3.97e-151</span>, <span class="fl">3.54e-19</span>),</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>  Interpretação <span class="ot">=</span> <span class="fu">rep</span>(<span class="st">"Não segue uma distribuição normal (p &lt; 0.05)"</span>, <span class="dv">12</span>)</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Gerar a tabela com kable</span></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(resultados_ks, <span class="at">caption =</span> <span class="st">"Resultados do Teste de Kolmogorov-Smirnov para Normalidade"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Histograma da variável 'Total'</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pokemon, <span class="fu">aes</span>(<span class="at">x =</span> total)) <span class="sc">+</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>, <span class="at">fill =</span> <span class="st">"orange"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribuição do Total de Atributos"</span>, <span class="at">x =</span> <span class="st">"Total de Atributos"</span>, <span class="at">y =</span> <span class="st">"Frequência"</span>) <span class="sc">+</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Supondo que o código já tenha sido executado:</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>height_test <span class="ot">&lt;-</span> <span class="fu">leveneTest</span>(pokemon<span class="sc">$</span>height <span class="sc">~</span> pokemon<span class="sc">$</span>generation)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>weight_test <span class="ot">&lt;-</span> <span class="fu">leveneTest</span>(pokemon<span class="sc">$</span>weight <span class="sc">~</span> pokemon<span class="sc">$</span>generation)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando uma tabela com os resultados</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>resultados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Variável"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Height"</span>, <span class="st">"Weight"</span>),</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Valor de p"</span> <span class="ot">=</span> <span class="fu">c</span>(height_test<span class="sc">$</span><span class="st">`</span><span class="at">Pr(&gt;F)</span><span class="st">`</span>[<span class="dv">1</span>], weight_test<span class="sc">$</span><span class="st">`</span><span class="at">Pr(&gt;F)</span><span class="st">`</span>[<span class="dv">1</span>]),</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Conclusão"</span> <span class="ot">=</span> <span class="fu">c</span>(</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ifelse</span>(height_test<span class="sc">$</span><span class="st">`</span><span class="at">Pr(&gt;F)</span><span class="st">`</span>[<span class="dv">1</span>] <span class="sc">&lt;</span> <span class="fl">0.05</span>, <span class="st">"Diferença significativa"</span>, <span class="st">"Diferença não significativa"</span>),</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ifelse</span>(weight_test<span class="sc">$</span><span class="st">`</span><span class="at">Pr(&gt;F)</span><span class="st">`</span>[<span class="dv">1</span>] <span class="sc">&lt;</span> <span class="fl">0.05</span>, <span class="st">"Diferença significativa"</span>, <span class="st">"Diferença não significativa"</span>)</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Exibindo a tabela</span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(resultados)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Supondo que o código já tenha sido executado:</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>height_test <span class="ot">&lt;-</span> <span class="fu">leveneTest</span>(pokemon<span class="sc">$</span>height <span class="sc">~</span> pokemon<span class="sc">$</span>special_group)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>weight_test <span class="ot">&lt;-</span> <span class="fu">leveneTest</span>(pokemon<span class="sc">$</span>weight <span class="sc">~</span> pokemon<span class="sc">$</span>special_group)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando uma tabela com os resultados</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>resultados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Variável"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Height"</span>, <span class="st">"Weight"</span>),</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Valor de p"</span> <span class="ot">=</span> <span class="fu">c</span>(height_test<span class="sc">$</span><span class="st">`</span><span class="at">Pr(&gt;F)</span><span class="st">`</span>[<span class="dv">1</span>], weight_test<span class="sc">$</span><span class="st">`</span><span class="at">Pr(&gt;F)</span><span class="st">`</span>[<span class="dv">1</span>]),</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Conclusão"</span> <span class="ot">=</span> <span class="fu">c</span>(</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ifelse</span>(height_test<span class="sc">$</span><span class="st">`</span><span class="at">Pr(&gt;F)</span><span class="st">`</span>[<span class="dv">1</span>] <span class="sc">&lt;</span> <span class="fl">0.05</span>, <span class="st">"Diferença significativa"</span>, <span class="st">"Diferença não significativa"</span>),</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ifelse</span>(weight_test<span class="sc">$</span><span class="st">`</span><span class="at">Pr(&gt;F)</span><span class="st">`</span>[<span class="dv">1</span>] <span class="sc">&lt;</span> <span class="fl">0.05</span>, <span class="st">"Diferença significativa"</span>, <span class="st">"Diferença não significativa"</span>)</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Exibindo a tabela</span></span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(resultados)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Supondo que o código já tenha sido executado:</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>height_test <span class="ot">&lt;-</span> <span class="fu">leveneTest</span>(pokemon<span class="sc">$</span>height <span class="sc">~</span> pokemon<span class="sc">$</span>growth_rate)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>weight_test <span class="ot">&lt;-</span> <span class="fu">leveneTest</span>(pokemon<span class="sc">$</span>weight <span class="sc">~</span> pokemon<span class="sc">$</span>growth_rate)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando uma tabela com os resultados</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>resultados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Variável"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Height"</span>, <span class="st">"Weight"</span>),</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Valor de p"</span> <span class="ot">=</span> <span class="fu">c</span>(height_test<span class="sc">$</span><span class="st">`</span><span class="at">Pr(&gt;F)</span><span class="st">`</span>[<span class="dv">1</span>], weight_test<span class="sc">$</span><span class="st">`</span><span class="at">Pr(&gt;F)</span><span class="st">`</span>[<span class="dv">1</span>]),</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Conclusão"</span> <span class="ot">=</span> <span class="fu">c</span>(</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ifelse</span>(height_test<span class="sc">$</span><span class="st">`</span><span class="at">Pr(&gt;F)</span><span class="st">`</span>[<span class="dv">1</span>] <span class="sc">&lt;</span> <span class="fl">0.05</span>, <span class="st">"Diferença significativa"</span>, <span class="st">"Diferença não significativa"</span>),</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ifelse</span>(weight_test<span class="sc">$</span><span class="st">`</span><span class="at">Pr(&gt;F)</span><span class="st">`</span>[<span class="dv">1</span>] <span class="sc">&lt;</span> <span class="fl">0.05</span>, <span class="st">"Diferença significativa"</span>, <span class="st">"Diferença não significativa"</span>)</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Exibindo a tabela</span></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(resultados)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Distribuição do tipo1</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>pokemon <span class="sc">%&gt;%</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(type1) <span class="sc">%&gt;%</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(type1, n), <span class="at">y =</span> n, <span class="at">fill =</span> type1)) <span class="sc">+</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span> <span class="fu">scale_y_log10</span>() <span class="sc">+</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribuição do Tipo Primário de Pokémon"</span>, <span class="at">x =</span> <span class="st">"Tipo1"</span>, <span class="at">y =</span> <span class="st">"Frequência"</span>) <span class="sc">+</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Distribuição do tipo2</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>pokemon <span class="sc">%&gt;%</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(type2) <span class="sc">%&gt;%</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(type2, n), <span class="at">y =</span> n, <span class="at">fill =</span> type2)) <span class="sc">+</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span> <span class="fu">scale_y_log10</span>() <span class="sc">+</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribuição do Tipo Secundário de Pokémon"</span>, <span class="at">x =</span> <span class="st">"Tipo2"</span>, <span class="at">y =</span> <span class="st">"Frequência"</span>) <span class="sc">+</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 5 Pokemons mais fortes (baseado na coluna total)</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>pokemon <span class="sc">|&gt;</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name,total,species,type1,type2,growth_rate) <span class="sc">|&gt;</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(total<span class="sc">&gt;=</span><span class="fu">mean</span>(total)) <span class="sc">|&gt;</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(total)) <span class="sc">|&gt;</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">5</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 5 Pokemons mais fracos (baseado na coluna total)</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>pokemon <span class="sc">|&gt;</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name,total,species,type1,type2, growth_rate) <span class="sc">|&gt;</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(total<span class="sc">&lt;</span><span class="fu">mean</span>(total)) <span class="sc">|&gt;</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>((total)) <span class="sc">|&gt;</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">5</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 5 pokemons mais difíceis de capturar</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>pokemon <span class="sc">|&gt;</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name,catch_rate,species,type1,type2, growth_rate) <span class="sc">|&gt;</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(catch_rate<span class="sc">&lt;</span><span class="fu">mean</span>(catch_rate)) <span class="sc">|&gt;</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(catch_rate) <span class="sc">|&gt;</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">5</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 5 pokemons mais fáceis de capturar</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>pokemon <span class="sc">|&gt;</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name,catch_rate,species,type1,type2, growth_rate) <span class="sc">|&gt;</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(catch_rate<span class="sc">&gt;=</span><span class="fu">mean</span>(catch_rate)) <span class="sc">|&gt;</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(catch_rate)) <span class="sc">|&gt;</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">5</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Distribuição das gerações</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pokemon) <span class="sc">+</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> generation, <span class="at">fill =</span> <span class="st">"steelblue"</span>)) <span class="sc">+</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Quantidade de Pokémon por Geração"</span>, <span class="at">x =</span> <span class="st">"Geração"</span>, <span class="at">y =</span> <span class="st">"Frequência"</span>) <span class="sc">+</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(pokemon<span class="sc">$</span>total <span class="sc">~</span> pokemon<span class="sc">$</span>generation)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificar melhor geração baseado no total</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pokemon, <span class="fu">aes</span>(<span class="at">x =</span> generation, <span class="at">y =</span> total, <span class="at">color=</span>generation)) <span class="sc">+</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span> <span class="fu">stat_summary</span>(<span class="at">fun.y=</span>mean, <span class="at">geom=</span><span class="st">"point"</span>, <span class="at">shape=</span><span class="dv">23</span>, <span class="at">size=</span><span class="dv">5</span>, <span class="at">fill =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">shape=</span><span class="dv">16</span>, <span class="at">position=</span><span class="fu">position_jitter</span>(<span class="fl">0.2</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Distribuição dos grupos especiais</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pokemon) <span class="sc">+</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> special_group, <span class="at">fill =</span> <span class="st">"tomato"</span>),<span class="at">width =</span> <span class="fl">0.6</span>) <span class="sc">+</span> <span class="fu">scale_y_log10</span>() <span class="sc">+</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Quantidade de Pokémon por Grupos Especiais"</span>, <span class="at">x =</span> <span class="st">"Special Group"</span>, <span class="at">y =</span> <span class="st">"Frequência"</span>) <span class="sc">+</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(pokemon<span class="sc">$</span>total <span class="sc">~</span> pokemon<span class="sc">$</span>special_group)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Distribuição da taxa de crescimento</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pokemon) <span class="sc">+</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> growth_rate, <span class="at">fill =</span> <span class="st">"darkgreen"</span>)) <span class="sc">+</span> <span class="fu">scale_y_log10</span>() <span class="sc">+</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Quantidade de Pokémon por Taxa de Crescimento"</span>, <span class="at">x =</span> <span class="st">"Growth Rate"</span>, <span class="at">y =</span> <span class="st">"Frequência"</span>) <span class="sc">+</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(pokemon<span class="sc">$</span>total <span class="sc">~</span> pokemon<span class="sc">$</span>growth_rate)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificar melhor taxa de crescimento baseado no total</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pokemon, <span class="fu">aes</span>(<span class="at">x =</span> growth_rate, <span class="at">y =</span> total, <span class="at">color=</span>growth_rate)) <span class="sc">+</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span> <span class="fu">stat_summary</span>(<span class="at">fun.y=</span>mean, <span class="at">geom=</span><span class="st">"point"</span>, <span class="at">shape=</span><span class="dv">23</span>, <span class="at">size=</span><span class="dv">4</span>, <span class="at">fill =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">shape=</span><span class="dv">16</span>, <span class="at">position=</span><span class="fu">position_jitter</span>(<span class="fl">0.2</span>))</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Exemplos de pokemon que tem uma taxa de crescimento lenta e possuem total baixo</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>pokemon <span class="sc">|&gt;</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, total, growth_rate, type1, type2) <span class="sc">|&gt;</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(growth_rate <span class="sc">==</span> <span class="st">"Slow"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>((total)) <span class="sc">|&gt;</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="códigos-do-modelo" class="level3">
+<h3 class="anchored" data-anchor-id="códigos-do-modelo">5.2 Códigos do Modelo</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Excluindo colunas inutilizáveis para o modelo </span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>pokemon<span class="sc">$</span>name <span class="ot">=</span> <span class="cn">NULL</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>pokemon<span class="sc">$</span>dexnum <span class="ot">=</span> <span class="cn">NULL</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>pokemon<span class="sc">$</span>percent_female <span class="ot">=</span> <span class="cn">NULL</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>pokemon<span class="sc">$</span>percent_male <span class="ot">=</span> <span class="cn">NULL</span></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>pokemon<span class="sc">$</span>species <span class="ot">=</span> <span class="cn">NULL</span></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>pokemon<span class="sc">$</span>ability1 <span class="ot">=</span> <span class="cn">NULL</span></span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>pokemon<span class="sc">$</span>ability2 <span class="ot">=</span> <span class="cn">NULL</span></span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>pokemon<span class="sc">$</span>hidden_ability <span class="ot">=</span> <span class="cn">NULL</span></span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>pokemon<span class="sc">$</span>ev_yield <span class="ot">=</span> <span class="cn">NULL</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mudando special group para dicotomica</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>pokemon <span class="ot">=</span> pokemon <span class="sc">|&gt;</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">special_group =</span> <span class="fu">fct_recode</span>(special_group,</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"Especiais"</span>    <span class="ot">=</span> <span class="st">"Future Paradox"</span>,</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"Especiais"</span>      <span class="ot">=</span> <span class="st">"Ancient Paradox"</span>,</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"Especiais"</span> <span class="ot">=</span> <span class="st">"Ultra Beast"</span>,</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"Especiais"</span> <span class="ot">=</span> <span class="st">"Baby Pokemon"</span>,</span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"Especiais"</span>        <span class="ot">=</span> <span class="st">"Fossil"</span>,</span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"Especiais"</span>      <span class="ot">=</span> <span class="st">"Legendary"</span>,</span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"Especiais"</span>                 <span class="ot">=</span> <span class="st">"Mythical"</span>,</span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"Ordinary"</span> <span class="ot">=</span> <span class="st">"Ordinary"</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Omitindo linhas que possuem valores nulos (34 linhas)</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>pokemon <span class="ot">=</span> <span class="fu">na.omit</span>(pokemon)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>amostra_teste <span class="ot">=</span> <span class="fu">sample</span>(<span class="dv">1008</span>,<span class="dv">102</span>)</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>pokemon_treino <span class="ot">=</span> pokemon[<span class="sc">-</span>amostra_teste,]</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>pokemon_teste <span class="ot">=</span> pokemon[amostra_teste,]</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Dimensão da base de dados de treino:"</span>,<span class="fu">dim</span>(pokemon_treino)[<span class="dv">1</span>],<span class="st">","</span>,<span class="fu">dim</span>(pokemon_treino)[<span class="dv">2</span>]))</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Dimensão da base de dados de teste:"</span>,<span class="fu">dim</span>(pokemon_teste)[<span class="dv">1</span>],<span class="st">","</span>,<span class="fu">dim</span>(pokemon_teste)[<span class="dv">2</span>]))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>modelo_pokemon <span class="ot">=</span> <span class="fu">C5.0</span>(<span class="at">x =</span> pokemon_treino[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">20</span>)], <span class="at">y =</span> pokemon_treino<span class="sc">$</span>special_group)</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Vamos ver como o modelo classifica os dados de teste</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>pokemon_pred <span class="ot">=</span> <span class="fu">predict</span>(modelo_pokemon, pokemon_teste)</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>pokemon_pred</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Capturando a saída do summary(modelo_credito)</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>saida_summary <span class="ot">&lt;-</span> <span class="fu">capture.output</span>(<span class="fu">summary</span>(modelo_pokemon))</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Extraindo a seção "Attribute usage"</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>attribute_usage_lines <span class="ot">&lt;-</span> saida_summary[<span class="fu">str_detect</span>(saida_summary, <span class="st">"Attribute usage"</span>) <span class="sc">+</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(saida_summary)]</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>attribute_usage_lines <span class="ot">&lt;-</span> attribute_usage_lines[<span class="fu">str_detect</span>(attribute_usage_lines, <span class="st">"^</span><span class="sc">\\</span><span class="st">s+</span><span class="sc">\\</span><span class="st">d+</span><span class="sc">\\</span><span class="st">.</span><span class="sc">\\</span><span class="st">d+%"</span>)]</span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Extraindo os nomes dos atributos e suas porcentagens de uso</span></span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>attribute_usage <span class="ot">&lt;-</span> <span class="fu">str_match_all</span>(attribute_usage_lines, <span class="st">"</span><span class="sc">\\</span><span class="st">s+(</span><span class="sc">\\</span><span class="st">d+</span><span class="sc">\\</span><span class="st">.</span><span class="sc">\\</span><span class="st">d+)%</span><span class="sc">\\</span><span class="st">s+(</span><span class="sc">\\</span><span class="st">w+)"</span>)</span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>attribute_usage <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind, attribute_usage)</span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>attribute_usage <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(attribute_usage)</span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(attribute_usage) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Match"</span>, <span class="st">"Usage"</span>, <span class="st">"Attribute"</span>)</span>
+<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Convertendo a coluna Usage para numérica</span></span>
+<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a>attribute_usage<span class="sc">$</span>Usage <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(attribute_usage<span class="sc">$</span>Usage)</span>
+<span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-17"><a href="#cb44-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Ordenando os atributos por uso (opcional, mas melhora a visualização)</span></span>
+<span id="cb44-18"><a href="#cb44-18" aria-hidden="true" tabindex="-1"></a>attribute_usage <span class="ot">&lt;-</span> attribute_usage[<span class="fu">order</span>(<span class="sc">-</span>attribute_usage<span class="sc">$</span>Usage), ]</span>
+<span id="cb44-19"><a href="#cb44-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-20"><a href="#cb44-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando o gráfico de barras para atributos mais utilizados com as porcentagens nas barras</span></span>
+<span id="cb44-21"><a href="#cb44-21" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(attribute_usage, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(Attribute, Usage), <span class="at">y =</span> Usage)) <span class="sc">+</span></span>
+<span id="cb44-22"><a href="#cb44-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">fill =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
+<span id="cb44-23"><a href="#cb44-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste0</span>(Usage, <span class="st">"%"</span>)),  <span class="co"># Adiciona as porcentagens</span></span>
+<span id="cb44-24"><a href="#cb44-24" aria-hidden="true" tabindex="-1"></a>            <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.1</span>,                     <span class="co"># Ajusta a posição horizontal do texto</span></span>
+<span id="cb44-25"><a href="#cb44-25" aria-hidden="true" tabindex="-1"></a>            <span class="at">size =</span> <span class="fl">3.5</span>,                        <span class="co"># Tamanho do texto</span></span>
+<span id="cb44-26"><a href="#cb44-26" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span>                 <span class="co"># Cor do texto</span></span>
+<span id="cb44-27"><a href="#cb44-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span>                               <span class="co"># Inverte os eixos para facilitar a leitura</span></span>
+<span id="cb44-28"><a href="#cb44-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb44-29"><a href="#cb44-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Uso dos Atributos no Modelo"</span>,</span>
+<span id="cb44-30"><a href="#cb44-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Atributos"</span>,</span>
+<span id="cb44-31"><a href="#cb44-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Porcentagem de Uso (%)"</span></span>
+<span id="cb44-32"><a href="#cb44-32" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb44-33"><a href="#cb44-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb44-34"><a href="#cb44-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))  <span class="co"># Centraliza o título</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Aplicando matriz de confusão</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>matriz_conf <span class="ot">=</span> <span class="fu">confusionMatrix</span>(pokemon_pred, pokemon_teste<span class="sc">$</span>special_group)</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>matriz_conf</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vamos usar a função do pacote gmodels para comparar as classificações</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="co"># do modelo aos dados de treinamento com a classificação real</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="fu">CrossTable</span>(pokemon_teste<span class="sc">$</span>special_group, pokemon_pred,</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">prop.chisq =</span> <span class="cn">FALSE</span>, <span class="at">prop.c =</span> <span class="cn">FALSE</span>, <span class="at">prop.r =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">dnn =</span> <span class="fu">c</span>(<span class="st">"Grupos Especiais real"</span>, <span class="st">"Grupos Especiais predita"</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiada");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiada");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
