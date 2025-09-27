@@ -323,7 +323,7 @@ pokemon |>
 ```
 
 | Arceus![](Pokemons%20fortes/arceus.jpg) | Eternatus![](Pokemons%20fortes/eternatus.jpg) |
-|------------------------------------|------------------------------------|
+|----|----|
 | **Mewtwo**![](Pokemons%20fortes/mewtwo.png){width="180"} | **Lugia**![](Pokemons%20fortes/lugia.jpg){width="200" height="150"} |
 | **Ho-Oh**![](Pokemons%20fortes/Ho-Oh.png){width="180"} |  |
 
@@ -354,7 +354,7 @@ pokemon |>
 ```
 
 | Wishiwashi![](Pokemons%20fracos/wishiwashi.jpg){width="200"} | Sunkern![](Pokemons%20fracos/sunkern.png){width="180"} |
-|------------------------------------|------------------------------------|
+|----|----|
 | **Blipbug**![](Pokemons%20fracos/blipbug.png){width="180"} | **Snom**![](Pokemons%20fracos/snom.jpg){width="200" height="150"} |
 | **Azurill**![](Pokemons%20fracos/azurill.png){width="180"} |  |
 
@@ -379,7 +379,7 @@ pokemon |>
 ```
 
 | Articuno![](pokemons%20dificeis/articunos.png){width="200"} | Zapdos![](pokemons%20dificeis/zapdos.png){width="180"} |
-|------------------------------------|------------------------------------|
+|----|----|
 | **Moltres**![](pokemons%20dificeis/moltres.jpg){width="180"} | **Mewtwo**![](pokemons%20dificeis/mewtwo.png){width="200" height="150"} |
 | **Raikou**![](pokemons%20dificeis/Raikou.png){width="180"} |  |
 
@@ -402,7 +402,7 @@ pokemon |>
 ```
 
 | Caterpie![](pokemons%20faceis/caterpie.jpg){width="200"} | Weedle![](pokemons%20faceis/Weedle.png){width="180"} |
-|------------------------------------|------------------------------------|
+|----|----|
 | **Pidgey**![](pokemons%20faceis/pidgey.png){width="180"} | **Rattata**![](pokemons%20faceis/rattata.png){width="200" height="150"} |
 | **Spearow**![](pokemons%20faceis/spearow.jpg){width="180"} |  |
 
@@ -516,7 +516,7 @@ pokemon |>
 ```
 
 |  |  |
-|------------------------------------|------------------------------------|
+|----|----|
 | **Ralts**![](exemplos/ralts.png) | **Kirlia**![](exemplos/evo%20ralts.png) |
 | **Magikarp**![](exemplos/magikarp.png) | **Gyarados**![](exemplos/evo%20magikarp.png) |
 | **Cosmog**![](exemplos/cosmog.png) | **Cosmoem**![](exemplos/evo%20cosmog.png) |
